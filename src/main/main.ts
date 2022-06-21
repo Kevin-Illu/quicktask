@@ -16,10 +16,20 @@ function createWindow() {
 	})
 
 	ipcMain.on('btn-event', (event:any, action: string) => {
-		if (action === "maximize") win.maximize();
-		if (action === "minimize") win.minimize();
-		if (action === "close") win.close();
-		if (action === "rezise") win.unmaximize();
+		switch(action) {
+			case "maximize":
+				win.maximize();
+				break;
+			case "minimize":
+				win.minimize();
+				break;
+			case "close":
+				win.close();
+				break;
+			case "rezise":
+				win.unmaximize();
+				break;
+		}
 	})
 
 	win.loadFile('../../index.html')
