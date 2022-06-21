@@ -1,0 +1,32 @@
+.todo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:0 2.6rem;
+    border-radius: $xl4;
+    border: 2px solid #ededed;
+
+    p {
+        width: 100%;
+        font-size: 1.6rem;
+    }
+
+    &:hover{
+        background-color: #ededed;
+    }
+}
+
+.btn-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: .8rem;
+
+    .btn {
+        width: 46px;
+        border-radius: 50%;
+        padding: .6rem;
+        display: grid;
+        place-items: center;
+    }
+}

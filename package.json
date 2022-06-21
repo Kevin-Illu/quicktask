@@ -1,0 +1,20 @@
+{
+  "name": "electron-todo-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/main/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ./build/main/main.js",
+    "css": "sass --watch ./src/render/scss/index.scss ./public/styles/index.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^19.0.4"
+  },
+  "dependencies": {
+    "electron-reloader": "^1.2.3"
+  }
+}

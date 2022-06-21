@@ -1,0 +1,23 @@
+#todo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    input[type="text"] {
+        height: $xl8;
+        padding: 1rem 2.2rem;
+        height: 100%;
+        font-size: 2rem;
+        border: none;
+        border-radius: $xl4;
+        outline: none;
+        
+        &:hover {
+            background-color: #ededed;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+}

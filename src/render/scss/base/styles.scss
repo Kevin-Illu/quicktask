@@ -1,0 +1,50 @@
+#root {
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 34px auto;
+  font-family: 'Noto Sans';
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('../fonts/NotoSans-Black.ttf');
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('../fonts/NotoSans-Bold.ttf');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('../fonts/NotoSans-SemiBold.ttf');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('../fonts/NotoSans-Regular.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('../fonts/NotoSans-Light.ttf');
+  font-weight: 300;
+}
+
+
+img {
+  width: 100%;
+}
+
+h1,h2, h3, h4, h5, h6 {
+  padding: 0;
+}
+
+p {
+  padding: 0;
+}

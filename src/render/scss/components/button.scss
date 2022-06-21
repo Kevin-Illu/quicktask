@@ -1,0 +1,18 @@
+.btn {
+  border: solid 2px;
+  border-color: #ededed;
+  transition: background-color 0.2s ease-in-out;
+  
+  &:hover {
+    background-color: rgb(228, 228, 228);
+  }
+}
+
+.btn div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .4rem;
+  padding: .4rem .6rem;
+  height: $xl;
+}

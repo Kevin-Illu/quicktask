@@ -1,0 +1,44 @@
+.navigation {
+  position: sticky;
+  top: 0;
+  -webkit-app-region: drag;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $bg-color;
+}
+
+.traffic-Lights-container { 
+  width: fit-content;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.traffic-Lights-container .btn {
+  background-color: #fff;
+  -webkit-app-region: no-drag;
+  border: none;
+  display: grid;
+  place-items: center;
+  padding: .4rem .6rem;
+}
+
+.traffic-Lights-container .btn-close {
+  &:hover {
+    background-color: $danger;
+  }
+}
+
+.title-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title-container .title {
+  user-select: none;
+  -webkit-app-region: drag;
+  padding-left: .6rem;
+}
