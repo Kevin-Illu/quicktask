@@ -1,5 +1,5 @@
 import {addStyles} from '../utils/add-styles.js'
-import Button from "../components/Button";
+import Button from "../GlobalComponents/Button";
 
 class MainNavigationBar {
 

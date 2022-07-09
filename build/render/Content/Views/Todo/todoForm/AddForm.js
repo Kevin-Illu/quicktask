@@ -1,5 +1,5 @@
-import Button from "../../../GlobalComponents/Button.js";
-import Select from "../../../GlobalComponents/Select.js";
+import Button from "../../../../GlobalComponents/Button.js";
+import Select from "../../../../GlobalComponents/Select.js";
 export const TodoForm = (params) => {
     const { action, todoFunc, todo } = params;
     const form = document.createElement('form');

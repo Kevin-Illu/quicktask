@@ -1,8 +1,8 @@
-import Button from "../../../components/Button.js";
-import { btnSettings, Todo, todoFormAction } from "../../../types/index.js";
+import Button from "../../../GlobalComponents/Button.js";
+import { btnSettings, Todo} from "../../../types/index.js";
 
 export const TodoItem = (todo: Todo, funcArr: any) => {
-    const [goToForm, remove, update] = funcArr;
+    const [goToUpdateForm, remove, update] = funcArr;
 
     const item = document.createElement('div');
     item.classList.add('todo-item');
@@ -24,7 +24,7 @@ export const TodoItem = (todo: Todo, funcArr: any) => {
     const btnEditSettings: btnSettings = {
         icon: './public/assets/edit.svg',
         text: null,
-        func: () => goToForm({ action: "update", todoFunc: update, todo }),
+        func: () => goToUpdateForm(todo, update),
         styles: ['btn', 'btn-edit']
     }
 

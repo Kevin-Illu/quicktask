@@ -1,12 +1,6 @@
 import { addStyles } from '../../utils/add-styles.js';
 class ContainerApp {
     constructor() {
-        this.addNavBar = (NavBar) => {
-            this.containerNavBar.appendChild(NavBar);
-        };
-        this.addApp = (App) => {
-            this.containerApp.appendChild(App);
-        };
         this.container = document.createElement('div');
         this.containerApp = document.createElement('div');
         this.containerNavBar = document.createElement('div');

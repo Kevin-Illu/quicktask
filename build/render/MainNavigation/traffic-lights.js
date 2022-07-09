@@ -1,4 +1,4 @@
-import Button from '../components/Button.js';
+import Button from '../GlobalComponents/Button.js';
 const close = () => window.mainApi.trafficsLightsAction('close');
 const maximize = () => {
     const btn = document.querySelector('.btn-maximize');

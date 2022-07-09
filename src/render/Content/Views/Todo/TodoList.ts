@@ -1,10 +1,10 @@
-import Button from "../../../components/Button.js";
-import { btnSettings, Todo, todoFormAction } from "../../../types/index.js";
+import Button from "../../../GlobalComponents/Button.js";
+import { btnSettings, Todo } from "../../../types/index.js";
 import { TodoItem } from "./TodoItem.js";
 
 export const TodoList = (todos: Todo[], handlers: any) => {
 
-    const [goToAddForm, remove, edit, add] = handlers;
+    const [goToAddForm, goToUpdateForm, remove, edit] = handlers;
 
     const list = document.createElement('div');
     list.className = 'todo-list';
@@ -13,9 +13,7 @@ export const TodoList = (todos: Todo[], handlers: any) => {
     const addTaskSettings: btnSettings = {
         icon: './public/assets/add.svg',
         text: null,
-        func: () => {
-            goToAddForm({action: "add", todoFunc: add, todo: null });
-        },
+        func: () => goToAddForm(),
         styles: ["btn", "btn-addTask"],
     }
 
@@ -27,7 +25,7 @@ export const TodoList = (todos: Todo[], handlers: any) => {
         list.append(p)
     } else {
         todos.forEach(todo => {
-            const item = TodoItem(todo, [goToAddForm, remove, edit])
+            const item = TodoItem(todo, [goToUpdateForm, remove, edit])
             list.appendChild(item)
         })
     }

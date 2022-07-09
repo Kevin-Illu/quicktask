@@ -1,18 +1,25 @@
 import { RemoveChild } from '../../../utils/RemoveChild.js';
-import { TodoForm } from './AddForm.js';
+import TaskForm from './Form/TaskForm.js';
 import { TodoList } from './TodoList.js';
 class TodoApp {
-    constructor() {
+    constructor(parentElement) {
         this._commit = () => {
             localStorage.setItem('todos', JSON.stringify(this.todos));
             this.displayTodos();
         };
-        this.displayAddForm = (action, func, todo = null) => {
+        this.displayAddForm = () => {
             if (!this.parent)
                 return;
             RemoveChild(this.parent);
-            const form = TodoForm(action, func, todo);
-            this.parent.appendChild(form);
+            this.taskForm.addForm(this.addTodo);
+            this.parent.appendChild(this.taskForm.form);
+        };
+        this.displayUpdateForm = (todo) => {
+            if (!this.parent)
+                return;
+            RemoveChild(this.parent);
+            this.taskForm.updateForm(todo, this.editTodo);
+            this.parent.appendChild(this.taskForm.form);
         };
         // CRUD
         this.displayTodos = () => {
@@ -21,9 +28,9 @@ class TodoApp {
             RemoveChild(this.parent);
             const handlers = [
                 this.displayAddForm,
+                this.displayUpdateForm,
                 this.deleteTodo,
                 this.editTodo,
-                this.addTodo
             ];
             const todoList = TodoList(this.todos, handlers);
             this.parent.appendChild(todoList);
@@ -54,7 +61,8 @@ class TodoApp {
             this._commit();
         };
         this.todos = JSON.parse(localStorage.getItem('todos') || "[]") || [];
-        this.parent = null;
+        this.parent = parentElement;
+        this.taskForm = new TaskForm();
     }
     setParent(parentElement) {
         this.parent = parentElement;

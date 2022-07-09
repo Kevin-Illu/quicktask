@@ -1,5 +1,5 @@
-import Button from '../components/Button.js';
-import { Settings } from '../types/index';
+import Button from '../GlobalComponents/Button.js';
+import { btnSettings } from '../types/index';
 
 const close = () => window.mainApi.trafficsLightsAction('close');
 const maximize = () => {
@@ -25,7 +25,7 @@ const btnMinimizeSettings = {
 	func: minimize,
 	styles: ["btn", "btn-minimize"],
 }
-const btnCloseSettings: Settings = {
+const btnCloseSettings: btnSettings = {
 	icon: './public/assets/close.svg',
 	text: null,
 	func: close,

@@ -15,13 +15,6 @@ class ContainerApp {
 		addStyles(this.containerApp, ["app"])
 		addStyles(this.containerNavBar, ["navbar-container"])
 	};
-
-	addNavBar = (NavBar: HTMLElement) => {
-		this.containerNavBar.appendChild(NavBar);
-	}
-	addApp = (App: HTMLElement) => {
-		this.containerApp.appendChild(App);
-	}
 };
 
 export default ContainerApp;
