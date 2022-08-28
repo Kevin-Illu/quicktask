@@ -1,28 +1,37 @@
 import Button from "../../../GlobalComponents/Button.js";
-import { TodoItem } from "./TodoItem.js";
-export const TodoList = (todos, handlers) => {
-    const [goToAddForm, goToUpdateForm, remove, edit] = handlers;
-    const list = document.createElement('div');
-    list.className = 'todo-list';
-    list.setAttribute('id', 'todo-list');
-    const addTaskSettings = {
-        icon: './public/assets/add.svg',
-        text: null,
-        func: () => goToAddForm(),
-        styles: ["btn", "btn-addTask"],
-    };
-    const btnAddTask = new Button(addTaskSettings);
-    if (todos.length === 0) {
-        const p = document.createElement('p');
-        p.textContent = 'Nothing to do! Add a task?';
-        list.append(p);
+import { addStyles } from "../../../utils/add-styles.js";
+import InitialScreen from "./InitialScreen.js";
+import TodoItem from "./TodoItem.js";
+class TodoList {
+    constructor(todos, handlers) {
+        this.addTodoItems = (todos) => {
+            if (todos.length == 0)
+                return;
+            todos.forEach(todo => {
+                const { item } = new TodoItem(todo, [this.goToUpdateF, this.removeItem, this.editItem]);
+                this.list.appendChild(item);
+            });
+        };
+        this.list = document.createElement("div");
+        addStyles(this.list, ["todo-list"]);
+        // handlers
+        const [goToAddForm, goToUpdateForm, remove, edit] = handlers;
+        this.goToForm = goToAddForm;
+        this.goToUpdateF = goToUpdateForm;
+        this.removeItem = remove;
+        this.editItem = edit;
+        this.addTodoItems(todos);
+        const addTaskSettings = {
+            icon: './public/assets/add.svg',
+            text: null,
+            func: () => this.goToForm(),
+            styles: ["btn", "btn-addTask"],
+        };
+        this.addNewTodoBtn = new Button(addTaskSettings);
+        this.initialScreen = new InitialScreen();
+        if (todos.length == 0)
+            this.list.appendChild(this.initialScreen.page);
+        this.list.appendChild(this.addNewTodoBtn.button);
     }
-    else {
-        todos.forEach(todo => {
-            const item = TodoItem(todo, [goToUpdateForm, remove, edit]);
-            list.appendChild(item);
-        });
-    }
-    list.appendChild(btnAddTask.button);
-    return list;
-};
+}
+export default TodoList;

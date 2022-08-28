@@ -28,7 +28,7 @@ class TaskForm {
                     id: todo.id,
                     title: this._title.value,
                     description: this._description.value,
-                    state: this._selectState.getValue()
+                    state: this._selectState.getValue(),
                 };
                 updateFunc(task);
             };
@@ -37,7 +37,7 @@ class TaskForm {
             const task = {
                 title: this._title.value,
                 description: this._description.value,
-                state: this._selectState.getValue()
+                state: this._selectState.getValue(),
             };
             return task;
         };
@@ -47,7 +47,7 @@ class TaskForm {
         this._titleAndSelectContainer = document.createElement('div');
         addStyles(this._titleAndSelectContainer, ["add-form__titleAndSelectContainer"]);
         this._title = document.createElement('input');
-        this._title.placeholder = 'Add a nwe task to your project';
+        this._title.placeholder = 'Add a new task to your project';
         this._title.type = 'text';
         this._title.setAttribute('autofocus', 'true');
         addStyles(this._title, ["titleAndSelectContainer__title"]);

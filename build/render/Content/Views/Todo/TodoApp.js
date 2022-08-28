@@ -1,11 +1,14 @@
 import { RemoveChild } from '../../../utils/RemoveChild.js';
 import TaskForm from './Form/TaskForm.js';
-import { TodoList } from './TodoList.js';
+import TodoList from './TodoList.js';
 class TodoApp {
     constructor(parentElement) {
         this._commit = () => {
             localStorage.setItem('todos', JSON.stringify(this.todos));
             this.displayTodos();
+        };
+        this.getLenghtTodos = () => {
+            return this.todos.length;
         };
         this.displayAddForm = () => {
             if (!this.parent)
@@ -32,8 +35,8 @@ class TodoApp {
                 this.deleteTodo,
                 this.editTodo,
             ];
-            const todoList = TodoList(this.todos, handlers);
-            this.parent.appendChild(todoList);
+            const todoList = new TodoList(this.todos, handlers);
+            this.parent.appendChild(todoList.list);
         };
         this.addTodo = ({ title, description, state }) => {
             const todo = {
@@ -63,9 +66,6 @@ class TodoApp {
         this.todos = JSON.parse(localStorage.getItem('todos') || "[]") || [];
         this.parent = parentElement;
         this.taskForm = new TaskForm();
-    }
-    setParent(parentElement) {
-        this.parent = parentElement;
     }
 }
 export default TodoApp;

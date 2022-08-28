@@ -21,7 +21,7 @@ class TaskForm {
     addStyles(this._titleAndSelectContainer, ["add-form__titleAndSelectContainer"]);
 
     this._title = document.createElement('input');
-    this._title.placeholder = 'Add a nwe task to your project';
+    this._title.placeholder = 'Add a new task to your project';
     this._title.type = 'text';
     this._title.setAttribute('autofocus', 'true');
     addStyles(this._title, ["titleAndSelectContainer__title"]);

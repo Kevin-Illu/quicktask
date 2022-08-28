@@ -1,5 +1,4 @@
 import Button from '../GlobalComponents/Button.js';
-const close = () => window.mainApi.trafficsLightsAction('close');
 const maximize = () => {
     const btn = document.querySelector('.btn-maximize');
     if (btn) {
@@ -10,6 +9,7 @@ const maximize = () => {
     }
 };
 const minimize = () => window.mainApi.trafficsLightsAction('minimize');
+const close = () => window.mainApi.trafficsLightsAction('close');
 const btnMaximizeSettings = {
     icon: './public/assets/maximize.svg',
     text: null,

@@ -372,7 +372,6 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #fafafa;
 }
 
 .traffic-Lights-container {
@@ -432,7 +431,6 @@ p {
   overflow-y: auto;
   width: 100%;
   height: 100%;
-  background-color: #fafafa;
   margin: 0 auto;
 }
 @media (min-width: 768px) {
@@ -507,30 +505,57 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2.6rem;
+  padding: 0 2rem;
   border-radius: 2.25rem;
   border: 2px solid #ededed;
 }
-.todo-item p {
+
+.todo-item__container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2.8rem;
   width: 100%;
+}
+.todo-item__container .todo-item__title {
   font-size: 1.6rem;
 }
-.todo-item:hover {
-  background-color: #ededed;
+.todo-item__container .todo-item__state {
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 100%;
+}
+.todo-item__container .on-hold {
+  background-color: rgb(244, 84, 84);
+}
+.todo-item__container .done {
+  background-color: rgb(81, 225, 65);
+}
+.todo-item__container .work {
+  background-color: royalblue;
+}
+.todo-item__container .open {
+  background-color: rgb(254, 242, 73);
 }
 
-.btn-container {
+.todo-item__containerButtons {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 0.8rem;
+  gap: 1rem;
 }
-.btn-container .btn {
+.todo-item__containerButtons .btn {
+  background-color: #fff;
+  border-color: rgba(221, 221, 221, 0.5333333333);
   width: 46px;
   border-radius: 50%;
   padding: 0.6rem;
   display: grid;
   place-items: center;
+  cursor: pointer;
+}
+.todo-item__containerButtons .btn:hover {
+  background-color: #ededed;
 }
 
 #todo-form {
@@ -561,7 +586,7 @@ p {
   font-size: 2rem;
 }
 .add-form__titleAndSelectContainer input[type=text]:hover {
-  background-color: #ededed;
+  background-color: #fcfcfc;
 }
 
 .add-form__description {
@@ -574,7 +599,7 @@ p {
   height: 8rem;
 }
 .add-form__description:hover {
-  background-color: #ededed;
+  background-color: #fcfcfc;
 }
 
 .btn-add-task {
@@ -589,6 +614,12 @@ p {
   align-self: flex-end;
   background-color: #fff;
   border: solid 2px #ededed;
+}
+
+.InitialScreen {
+  text-align: center;
+  padding: 1rem 0 3rem 0;
+  color: #000004;
 }
 
 /*# sourceMappingURL=index.css.map */
