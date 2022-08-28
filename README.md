@@ -1,5 +1,5 @@
-![TodoApp](.\images\todoList.PNG)
-![Add a Task](.\images\addTask.PNG)
+![TodoApp](./images/todoList.PNG)
+![Add a Task](./images/addTask.PNG)
 
 # Productivity App
 application that manages tasks, is currently under development.
