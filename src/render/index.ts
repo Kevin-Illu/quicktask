@@ -11,20 +11,17 @@ const navigate = new MainNavigation(["navigation"], [btnMinimize, btnMaximize, b
 const Container = new ContainerApp();
 const Todo = new TodoApp(Container.containerApp);// apps
 
+// TODO: add a lenght of the todos in the button TASK
+let lengthTodo = `${Todo.getLenghtTodos()}`;
+
 const btnTodoSettings = {
   icon: './public/assets/checklist.svg',
-  text: 'Task',
+  text: `Task ${lengthTodo}`,
   func: Todo.displayTodos,
   styles: ['navbar-btn', 'navbar-btn__display-todos', 'btn'],
 }
+
 const btnDisplayTodo = new Button(btnTodoSettings).button;
-
-// TODO: add a lenght of the todos in the button TASK
-// let lengthTodo = document.createElement('p');
-// lengthTodo.innerText = `${Todo.getLenghtTodos()}`;
-// if (btnDisplayTodo.firstChild != null) btnDisplayTodo.firstChild.appendChild(lengthTodo); 
-
-
 const navBar = new NavBar();// navbar apps
 const apps = [btnDisplayTodo]
 navBar.addApplications(apps);
