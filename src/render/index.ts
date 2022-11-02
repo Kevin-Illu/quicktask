@@ -1,6 +1,5 @@
 import NavBar from './Content/Views/NavBar/NavBar.js';
 import Button from './GlobalComponents/Button.js';
-
 import ContainerApp from './Content/Layout/ContainerApp.js';
 import MainNavigation from './MainNavigation/Main-navigation-bar.js';
 import { btnClose, btnMinimize, btnMaximize } from './MainNavigation/traffic-lights.js';

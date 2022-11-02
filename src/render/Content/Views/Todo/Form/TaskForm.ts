@@ -26,7 +26,7 @@ class TaskForm {
     this._title.setAttribute('autofocus', 'true');
     addStyles(this._title, ["titleAndSelectContainer__title"]);
 
-    this._selectState = new Select();
+    this._selectState = new Select("todo-state");
     addStyles(this._selectState.select, ["titleAndSelectContainer__selectState"]);
 
     this._description = document.createElement('textarea');
@@ -34,7 +34,7 @@ class TaskForm {
     addStyles(this._description, ['add-form__description']);
 
     this._selectState.cleanOptions();
-    this._selectState.setOptions(["open", "work", "on hold", "done"])
+    this._selectState.setOptions(["open", "work", "on hold", "done"]);
 
     const settings: btnSettings = {
       text: 'Add',
@@ -53,28 +53,38 @@ class TaskForm {
   }
 
   public addForm = (addFunc: ({ title, description, state }: addTodo) => void) => {
-    this._title.value = ""
-    this._selectState.setDefaultValue("open")
+    this._title.value = "";
     this._description.value = "";
     this._actionForm.renameButton("add");
+    this._selectState.setDefaultValue();
 
     this._actionForm.button.onclick = (e) => {
       e.preventDefault();
       // TODO: add a notification here!
-      if (this._title.value === "" && this._description.value === "") return;
-      const task = this.getTodo()
+      // this happend when the input title and the description are empty
+      if (this._title.value === "") {
+        return;
+      };
+      const task = {
+        title: this._title.value,
+        description: this._description.value,
+        state: this._selectState.getValue(),
+      }
       addFunc(task);
     }
   }
 
   public updateForm = (todo: Todo, updateFunc: ({ id, title, description, state }: Todo) => void) => {
     this._title.value = todo.title;
-    this._selectState.setDefaultValue(todo.state);
     this._description.value = todo.description;
     this._actionForm.renameButton("update");
 
     this._actionForm.button.onclick = (e) => {
       e.preventDefault();
+      // TODO: add a notification here!
+      if (this._title.value === "") {
+        return
+      };
       const task = {
         id: todo.id,
         title: this._title.value,
@@ -83,15 +93,6 @@ class TaskForm {
       };
       updateFunc(task);
     }
-  }
-
-  private getTodo = (): addTodo => {
-    const task = {
-      title: this._title.value,
-      description: this._description.value,
-      state: this._selectState.getValue(),
-    }
-    return task;
   }
 }
 
