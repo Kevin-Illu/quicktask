@@ -50,13 +50,15 @@ class TaskForm {
     this.form.appendChild(this._titleAndSelectContainer);
     this.form.appendChild(this._description);
     this.form.appendChild(this._actionForm.button);
+
+
+    this._selectState.setDefaultValue();
   }
 
   public addForm = (addFunc: ({ title, description, state }: addTodo) => void) => {
     this._title.value = "";
     this._description.value = "";
     this._actionForm.renameButton("add");
-    this._selectState.setDefaultValue();
 
     this._actionForm.button.onclick = (e) => {
       e.preventDefault();
