@@ -50,6 +50,7 @@ class TaskForm {
     this.form.appendChild(this._titleAndSelectContainer);
     this.form.appendChild(this._description);
     this.form.appendChild(this._actionForm.button);
+
   }
 
   public addForm = (addFunc: ({ title, description, state }: addTodo) => void) => {

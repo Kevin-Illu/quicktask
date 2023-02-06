@@ -7,8 +7,8 @@ import TodoApp from './Content/Views/Todo/TodoApp.js'
 import { btnSettings } from './types/index.js';
 
 // window topBar
-const navigate = new MainNavigation(["navigation"], [btnMinimize, btnMaximize, btnClose]);
 const Container = new ContainerApp();
+const navigate = new MainNavigation(["navigation"], [btnMinimize, btnMaximize, btnClose]);
 const Todo = new TodoApp(Container.containerApp);// apps
 
 // TODO: add a lenght of the todos in the button TASK
@@ -22,14 +22,17 @@ const btnTodoSettings: btnSettings = {
 }
 
 const btnDisplayTodo = new Button(btnTodoSettings).button;
-const navBar = new NavBar();// navbar apps
+const Navbar = new NavBar();// navbar apps
 const apps = [btnDisplayTodo]
-navBar.addApplications(apps);
+Navbar.addApplications(apps);
 
-const root: HTMLElement | null = document.getElementById("root");
-root?.appendChild(navigate.navigationBar);
+const root = document.getElementById("root") as HTMLDivElement;
+root.appendChild(navigate.navigationBar);
+
 // add navbar at the container app
-Container.containerNavBar.appendChild(navBar.NavBarContent);
+Container.containerNavBar.appendChild(Navbar.NavBarContent);
 navigate.setTitle("TodoApp");
-root?.appendChild(Container.container);
+
+root!.appendChild(Container.container);
 Todo.displayTodos();
+

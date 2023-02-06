@@ -6,7 +6,7 @@ import TodoList from './TodoList.js'
 
 class TodoApp {
   private todos: Todo[];
-  private parent: HTMLElement | null;
+  private parent: HTMLElement;
   private taskForm: TaskForm;
 
 
@@ -41,7 +41,6 @@ class TodoApp {
 
   // CRUD
   public displayTodos = () => {
-    if (!this.parent) return;
     RemoveChild(this.parent);
     const handlers = [
       this.displayAddForm,
