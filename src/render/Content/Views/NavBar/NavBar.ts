@@ -22,11 +22,6 @@ class NavBar {
   getAplications = (): String[] => {
     return this.apps
   }
-
-  // INFO: i need to update the state of the buttons.
-  render = () => {
-    console.log(this.apps.length)
-  }
 }
 
 export default NavBar;

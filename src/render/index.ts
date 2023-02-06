@@ -11,9 +11,6 @@ const Container = new ContainerApp();
 const navigate = new MainNavigation(["navigation"], [btnMinimize, btnMaximize, btnClose]);
 const Todo = new TodoApp(Container.containerApp);// apps
 
-// TODO: add a lenght of the todos in the button TASK
-// let lengthTodo = `${Todo.getLenghtTodos()}`;
-
 const btnTodoSettings: btnSettings = {
   icon: './public/assets/checklist.svg',
   text: 'Task',
