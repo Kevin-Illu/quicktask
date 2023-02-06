@@ -23,16 +23,9 @@ class Select {
   }
 
   public setCurrentValue = (state: todoState): void => {
-    this.select.childNodes.forEach(option => {
-      if (option.value === state) {
-        option.setAttribute('selected', 'selected');
-        return;
-      }
-    })
-  }
-
-  public setDefaultValue = (): void => {
-    // console.log(this.select);
+    const states = ["open", "work", "on hold", "done"];
+    const current = states.indexOf(state);
+    this.select.selectedIndex = current;
   }
 
   public cleanOptions = () => {

@@ -50,9 +50,6 @@ class TaskForm {
     this.form.appendChild(this._titleAndSelectContainer);
     this.form.appendChild(this._description);
     this.form.appendChild(this._actionForm.button);
-
-
-    this._selectState.setDefaultValue();
   }
 
   public addForm = (addFunc: ({ title, description, state }: addTodo) => void) => {
@@ -79,6 +76,7 @@ class TaskForm {
   public updateForm = (todo: Todo, updateFunc: ({ id, title, description, state }: Todo) => void) => {
     this._title.value = todo.title;
     this._description.value = todo.description;
+    this._selectState.setCurrentValue(todo.state);
     this._actionForm.renameButton("update");
 
     this._actionForm.button.onclick = (e) => {
