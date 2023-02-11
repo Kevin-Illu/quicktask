@@ -30,6 +30,6 @@ root.appendChild(navigate.navigationBar);
 Container.containerNavBar.appendChild(Navbar.NavBarContent);
 navigate.setTitle("TodoApp");
 
-root!.appendChild(Container.container);
+root.appendChild(Container.container);
 Todo.displayTodos();
 
