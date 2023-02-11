@@ -23,6 +23,10 @@
     width: 1.6rem;
     height: 1.6rem;
     border-radius: 100%;
+    min-width: 1.6rem;
+    min-height: 1.6rem;
+    align-self: flex-start;
+    margin: 1.6rem 0 0;
   }
 
   .on-hold {
