@@ -13,7 +13,7 @@ Before you get started, make sure you have the following installed on your machi
 
 ## Project Description
 
-QuickTask is a web application that allows you to create and manage your daily tasks. With an easy-to-use interface, you can add tasks, mark them as complete and view a list of pending tasks. Additionally, `QuickTask` is a developing application and is open to community contribution.
+QuickTask is a desktop application that allows you to create and manage your daily tasks. With an easy-to-use interface, you can add tasks, mark them as complete and view a list of pending tasks. Additionally, `QuickTask` is a developing application and is open to community contribution.
 
 ![Add a Task](./images/addTask.PNG)
 
