@@ -10,9 +10,9 @@ import {
 import TodoApp from './Content/Views/Todo/TodoApp.js'
 
 interface IbtnSettings {
-  icon?: string,
-  text?: string,
-  func?: () => void,
+  icon?: string
+  text?: string
+  func?: () => void
   styles: Array<string>
 }
 
