@@ -1,19 +1,19 @@
-import { addStyles } from "../../../utils/add-styles.js";
+import { addStyles } from '../../../utils/add-styles.js'
 
 class NavBar {
   private apps: String[]
-  NavBarContent: HTMLElement;
+  NavBarContent: HTMLElement
 
   constructor() {
-    this.NavBarContent = document.createElement('div');
+    this.NavBarContent = document.createElement('div')
     addStyles(this.NavBarContent, ['nav-bar'])
     this.apps = []
   }
 
   // navigate to apps = btn
   addApplications = (apps: HTMLButtonElement[] = []) => {
-    if (apps.length === 0) return;
-    apps.forEach(app => {
+    if (apps.length === 0) return
+    apps.forEach((app) => {
       this.apps.push(app.value)
       this.NavBarContent.appendChild(app)
     })
@@ -24,4 +24,4 @@ class NavBar {
   }
 }
 
-export default NavBar;
+export default NavBar

@@ -1,9 +1,11 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
-const path = require('path');
+const { app, BrowserWindow, ipcMain } = require('electron')
+const path = require('path')
 
 try {
-  require('electron-reloader')(module);
-} catch { }
+  require('electron-reloader')(module)
+} catch {
+  /* empty */
+}
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -11,8 +13,8 @@ function createWindow() {
     height: 600,
     frame: false,
     webPreferences: {
-      preload: path.join(__dirname, '../preload/index.js')
-    }
+      preload: path.join(__dirname, '../preload/index.js'),
+    },
   })
 
   ipcMain.on('btn-event', (event: any, action: string) => {
@@ -23,7 +25,7 @@ function createWindow() {
       rezise: () => win.unmaximize(),
     }
 
-    actions[action]();
+    actions[action]()
   })
 
   win.loadFile('../../index.html')

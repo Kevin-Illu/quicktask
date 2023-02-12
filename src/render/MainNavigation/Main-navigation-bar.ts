@@ -1,43 +1,44 @@
-import {addStyles} from '../utils/add-styles.js'
-import Button from "../GlobalComponents/Button";
+import { addStyles } from '../utils/add-styles.js'
+import Button from '../GlobalComponents/Button'
 
 class MainNavigationBar {
+  public navigationBar: HTMLElement
+  private _trafficLightsContainer: HTMLElement
+  public _titleContainer: HTMLElement
+  private _title: HTMLElement
 
-	public navigationBar: HTMLElement;
-	private _trafficLightsContainer: HTMLElement;
-	public _titleContainer: HTMLElement;
-	private _title: HTMLElement;
+  constructor(classList: string[] = [], buttons: Button[] = []) {
+    // creating the main container
+    this.navigationBar = document.createElement('nav')
 
-	constructor(classList: string[] = [], buttons: Button[] = []) {
-		// creating the main container
-		this.navigationBar = document.createElement("nav");
-		
-		// craeting the container for the trafficLights
-		this._trafficLightsContainer = document.createElement("div");
-		this.addButtonsToTLContainer(buttons)
-		
-		// craeting the container for the title
-		this._titleContainer = document.createElement("div");
-		this._title = document.createElement("p");
-		this._titleContainer.appendChild(this._title);
-		
-		addStyles(this._trafficLightsContainer,['traffic-Lights-container'])
-		addStyles(this.navigationBar, classList)
-		addStyles(this._titleContainer, ["title-container"]);
-		addStyles(this._title, ["title"]);
+    // craeting the container for the trafficLights
+    this._trafficLightsContainer = document.createElement('div')
+    this.addButtonsToTLContainer(buttons)
 
-		this.navigationBar.appendChild(this._titleContainer);
-		this.navigationBar.appendChild(this._trafficLightsContainer);
-	}
+    // craeting the container for the title
+    this._titleContainer = document.createElement('div')
+    this._title = document.createElement('p')
+    this._titleContainer.appendChild(this._title)
 
-	addButtonsToTLContainer = (buttons: Button[]) => {
-		buttons.forEach(btn => this._trafficLightsContainer.appendChild(btn.button))
-	}
+    addStyles(this._trafficLightsContainer, ['traffic-Lights-container'])
+    addStyles(this.navigationBar, classList)
+    addStyles(this._titleContainer, ['title-container'])
+    addStyles(this._title, ['title'])
 
-	setTitle = (title: string) => {
-		if (!title) return;
-		this._title.innerText = title;
-	}
+    this.navigationBar.appendChild(this._titleContainer)
+    this.navigationBar.appendChild(this._trafficLightsContainer)
+  }
+
+  addButtonsToTLContainer = (buttons: Button[]) => {
+    buttons.forEach((btn) =>
+      this._trafficLightsContainer.appendChild(btn.button)
+    )
+  }
+
+  setTitle = (title: string) => {
+    if (!title) return
+    this._title.innerText = title
+  }
 }
 
-export default MainNavigationBar;
+export default MainNavigationBar
