@@ -1,5 +1,5 @@
-import { addStyles } from '../utils/add-styles.js'
-import Button from '../GlobalComponents/Button'
+import Button from '../../../components/Button.js'
+import { addStyles } from '../../../utils/tools.js'
 
 class MainNavigationBar {
   public navigationBar: HTMLElement

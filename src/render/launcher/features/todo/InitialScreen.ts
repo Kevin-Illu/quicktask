@@ -1,4 +1,4 @@
-import { addStyles } from '../../../utils/add-styles.js'
+import { addStyles } from '../../../utils/tools.js'
 
 class InitialScreen {
   public page: HTMLDivElement

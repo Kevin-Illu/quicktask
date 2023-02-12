@@ -1,6 +1,7 @@
-import Button from '../../../GlobalComponents/Button.js'
-import { btnSettings, Todo, todoState } from '../../../types/index.js'
-import { addStyles } from '../../../utils/add-styles.js'
+import Button from '../../../components/Button.js'
+import { IbtnSettings, TodoState } from '../../../interfaces/components.js'
+import { ITodo } from '../../../interfaces/todo.js'
+import { addStyles } from '../../../utils/tools.js'
 
 class TodoItem {
   public item: HTMLDivElement
@@ -12,7 +13,7 @@ class TodoItem {
   private btnEdit: Button
   private btnDelete: Button
 
-  constructor(todo: Todo, [editForm, remove, edit]: any) {
+  constructor(todo: ITodo, [editForm, remove, edit]: any) {
     this.item = document.createElement('div')
     addStyles(this.item, ['todo-item'])
     this.container = document.createElement('div')
@@ -28,18 +29,16 @@ class TodoItem {
 
     this.containerButtons = document.createElement('div')
     addStyles(this.containerButtons, ['todo-item__containerButtons'])
-    const DSettings: btnSettings = {
-      icon: './public/assets/delete.svg',
-      text: null,
-      func: () => remove(todo.id),
+    const DSettings: IbtnSettings = {
+      iconPath: './public/assets/delete.svg',
+      action: () => remove(todo.id),
       styles: ['btn', 'btn-remove'],
     }
     this.btnDelete = new Button(DSettings)
 
-    const ESettings: btnSettings = {
-      icon: './public/assets/edit.svg',
-      text: null,
-      func: () => editForm(todo, edit),
+    const ESettings: IbtnSettings = {
+      iconPath: './public/assets/edit.svg',
+      action: () => editForm(todo, edit),
       styles: ['btn', 'btn-edit'],
     }
     this.btnEdit = new Button(ESettings)
@@ -53,9 +52,11 @@ class TodoItem {
     this.item.appendChild(this.containerButtons)
   }
 
-  private setStateColor = (state: todoState): void => {
-    if (state == 'on hold') state = 'on-hold'
-    addStyles(this.state, [state])
+  private setStateColor = (state: TodoState): void => {
+    let color: string = state
+    if (state === 'on hold') color = 'on-hold'
+
+    addStyles(this.state, [color])
   }
 }
 

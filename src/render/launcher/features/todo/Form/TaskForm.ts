@@ -1,7 +1,9 @@
 import Select from './Select.js'
-import { addStyles } from '../../../../utils/add-styles.js'
-import Button from '../../../../GlobalComponents/Button.js'
-import { addTodo, btnSettings, Todo } from '../../../../types/index.js'
+
+import Button from '../../../../components/Button.js'
+import { IbtnSettings } from '../../../../interfaces/components.js'
+import { ITodo } from '../../../../interfaces/todo.js'
+import { addStyles } from '../../../../utils/tools.js'
 
 class TaskForm {
   public form: HTMLFormElement
@@ -39,10 +41,9 @@ class TaskForm {
     this._selectState.cleanOptions()
     this._selectState.setOptions(['open', 'work', 'on hold', 'done'])
 
-    const settings: btnSettings = {
+    const settings: IbtnSettings = {
       text: 'Add',
-      icon: null,
-      func: null,
+      action: () => console.log('hola? para que se usa xD'),
       styles: ['btn-add-task'],
     }
     this._actionForm = new Button(settings)
@@ -56,7 +57,7 @@ class TaskForm {
   }
 
   // eslint-disable-next-line no-unused-vars
-  public addForm = (addFunc: (taks: addTodo) => void) => {
+  public addForm = (addFunc: (taks: ITodo) => void) => {
     this._title.value = ''
     this._description.value = ''
     this._actionForm.renameButton('add')
@@ -69,16 +70,18 @@ class TaskForm {
         return
       }
       const task = {
+        id: 0, // FIX: find any way to do this :c
         title: this._title.value,
         description: this._description.value,
         state: this._selectState.getValue(),
       }
+
       addFunc(task)
     }
   }
 
   // eslint-disable-next-line no-unused-vars
-  public updateForm = (todo: Todo, updateFunc: (task: Todo) => void) => {
+  public updateForm = (todo: ITodo, updateFunc: (task: ITodo) => void) => {
     this._title.value = todo.title
     this._description.value = todo.description
     this._selectState.setCurrentValue(todo.state)

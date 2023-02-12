@@ -1,33 +1,27 @@
-import NavBar from './Content/Views/NavBar/NavBar.js'
-import Button from './GlobalComponents/Button.js'
-import ContainerApp from './Content/Layout/ContainerApp.js'
-import MainNavigation from './MainNavigation/Main-navigation-bar.js'
+import Button from './components/Button.js'
+import { IbtnSettings } from './interfaces/components.js'
+import TodoApp from './launcher/features/todo/TodoApp.js'
+import MainNavigationBar from './launcher/layout/appbar/appbar.js'
 import {
   btnClose,
-  btnMinimize,
   btnMaximize,
-} from './MainNavigation/traffic-lights.js'
-import TodoApp from './Content/Views/Todo/TodoApp.js'
-
-interface IbtnSettings {
-  icon?: string
-  text?: string
-  func?: () => void
-  styles: Array<string>
-}
+  btnMinimize,
+} from './launcher/layout/appbar/appbarButtons.js'
+import ContainerApp from './launcher/layout/container.js'
+import NavBar from './launcher/layout/navbar.js'
 
 // window topBar
 const Container = new ContainerApp()
-const navigate = new MainNavigation(
+const navigate = new MainNavigationBar(
   ['navigation'],
   [btnMinimize, btnMaximize, btnClose]
 )
 const Todo = new TodoApp(Container.containerApp) // apps
 
 const btnTodoSettings: IbtnSettings = {
-  icon: './public/assets/checklist.svg',
+  iconPath: './public/assets/checklist.svg',
   text: 'Task',
-  func: Todo.displayTodos,
+  action: Todo.displayTodos,
   styles: ['navbar-btn', 'navbar-btn__display-todos', 'btn'],
 }
 

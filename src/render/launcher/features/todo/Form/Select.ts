@@ -1,4 +1,4 @@
-import { todoState } from '../../../../types/index'
+import { TodoState } from '../../../../interfaces/components'
 
 class Select {
   public select: HTMLSelectElement
@@ -17,12 +17,12 @@ class Select {
     })
   }
 
-  public getValue = (): todoState => {
+  public getValue = (): TodoState => {
     const option = this.select.options[this.select.selectedIndex]
-    return option.value === 'add state' ? 'open' : option.value
+    return option.value === 'add state' ? 'open' : (option.value as TodoState)
   }
 
-  public setCurrentValue = (state: todoState): void => {
+  public setCurrentValue = (state: TodoState): void => {
     const states = ['open', 'work', 'on hold', 'done']
     const current = states.indexOf(state)
     this.select.selectedIndex = current

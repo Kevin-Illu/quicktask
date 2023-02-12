@@ -1,10 +1,10 @@
-import { addTodo, Todo } from '../../../types/index'
-import { RemoveChild } from '../../../utils/RemoveChild.js'
+import { ITodo } from '../../../interfaces/todo.js'
+import { RemoveChild } from '../../../utils/tools.js'
 import TaskForm from './Form/TaskForm.js'
 import TodoList from './TodoList.js'
 
 class TodoApp {
-  private todos: Todo[]
+  private todos: ITodo[]
   private parent: HTMLElement
   private taskForm: TaskForm
 
@@ -30,7 +30,7 @@ class TodoApp {
     this.parent.appendChild(this.taskForm.form)
   }
 
-  public displayUpdateForm = (todo: Todo) => {
+  public displayUpdateForm = (todo: ITodo) => {
     if (!this.parent) return
     RemoveChild(this.parent)
     this.taskForm.updateForm(todo, this.editTodo)
@@ -50,7 +50,7 @@ class TodoApp {
     this.parent.appendChild(todoList.list)
   }
 
-  private addTodo = ({ title, description, state }: addTodo) => {
+  private addTodo = ({ title, description, state }: ITodo) => {
     const todo = {
       id: this.todos.length > 0 ? this.todos[this.todos.length - 1].id + 1 : 1,
       title,
@@ -62,7 +62,7 @@ class TodoApp {
     this._commit()
   }
 
-  private editTodo = ({ id, title, description, state }: Todo) => {
+  private editTodo = ({ id, title, description, state }: ITodo) => {
     this.todos = this.todos.map((todo) =>
       todo.id === id
         ? {

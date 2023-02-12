@@ -1,6 +1,7 @@
-import Button from '../../../GlobalComponents/Button.js'
-import { btnSettings, Todo } from '../../../types/index.js'
-import { addStyles } from '../../../utils/add-styles.js'
+import Button from '../../../components/Button.js'
+import { IbtnSettings } from '../../../interfaces/components.js'
+import { ITodo } from '../../../interfaces/todo.js'
+import { addStyles } from '../../../utils/tools.js'
 import InitialScreen from './InitialScreen.js'
 import TodoItem from './TodoItem.js'
 
@@ -13,7 +14,7 @@ class TodoList {
   private editItem: () => void
   private initialScreen: InitialScreen
 
-  constructor(todos: Todo[], handlers: any) {
+  constructor(todos: ITodo[], handlers: any) {
     this.list = document.createElement('div')
     addStyles(this.list, ['todo-list'])
     // handlers
@@ -24,10 +25,9 @@ class TodoList {
     this.editItem = edit
     this.addTodoItems(todos)
 
-    const addTaskSettings: btnSettings = {
-      icon: './public/assets/add.svg',
-      text: null,
-      func: () => this.goToForm(),
+    const addTaskSettings: IbtnSettings = {
+      iconPath: './public/assets/add.svg',
+      action: () => this.goToForm(),
       styles: ['btn', 'btn-addTask'],
     }
 
@@ -37,7 +37,7 @@ class TodoList {
     this.list.appendChild(this.addNewTodoBtn.button)
   }
 
-  private addTodoItems = (todos: Todo[]): void => {
+  private addTodoItems = (todos: ITodo[]): void => {
     if (todos.length == 0) return
 
     todos.forEach((todo) => {

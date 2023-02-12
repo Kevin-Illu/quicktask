@@ -1,4 +1,4 @@
-import { addStyles } from '../../utils/add-styles.js'
+import { addStyles } from '../../utils/tools.js'
 
 class ContainerApp {
   public container: HTMLDivElement
