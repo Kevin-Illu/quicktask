@@ -1,14 +1,15 @@
 import { IbtnSettings } from '../interfaces/components'
-import { addStyles } from '../utils/tools.js'
+import htmlElement from './htmlElement/ElementFactory/htmlElement.js'
 
-class Button {
+class Button extends htmlElement {
   public button: HTMLButtonElement
   private _settings: IbtnSettings
   private _text: HTMLParagraphElement
   private _img: HTMLImageElement
   private _container: HTMLDivElement
 
-  constructor({ iconPath, text, action, styles = [] }: IbtnSettings) {
+  constructor({ iconPath, text, action, styles }: IbtnSettings) {
+    super('button', { styles: { backgroundColor: 'red' } })
     this.button = document.createElement('button')
     this._settings = { iconPath, text, action, styles }
     this._text = document.createElement('p')
@@ -19,11 +20,11 @@ class Button {
 
   appendContent = (settings: IbtnSettings): void => {
     const { iconPath, text, action, styles } = settings
-    const errorMessage = `Provide a valid iconPath or text for the 
-			button if you provide both then the button will 
+    const errorMessage = `Provide a valid iconPath or text for the
+			button if you provide both then the button will
 			contain iconPath and text`
 
-    addStyles(this.button, styles)
+    this.addClassList(styles)
 
     this.button.onclick = action
 
