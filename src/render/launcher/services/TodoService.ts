@@ -1,3 +1,4 @@
+import { IService } from '../interfaces/IService'
 import { ITodo } from '../interfaces/ITodo'
 
 class TodoService implements IService {
