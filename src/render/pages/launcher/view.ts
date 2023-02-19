@@ -1,9 +1,9 @@
 import View from '../view.js'
 
-class LauncherView extends View {
+class ViewLauncher extends View {
   constructor() {
-    super('container-launcher')
+    super('view-launcher')
   }
 }
 
-export default LauncherView
+export default ViewLauncher
