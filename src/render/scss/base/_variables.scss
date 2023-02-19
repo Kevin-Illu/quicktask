@@ -1,0 +1,202 @@
+// Colors
+$color-primary: #3469b7;
+$color-secondary: #2f2f2f;
+$color-tertiary: #f0f0f0;
+$color-accent: #f4c20d;
+$color-success: #28a745;
+$color-warning: #ffc107;
+$color-error: #dc3545;
+
+// Typography
+$font-family: 'Noto Sans', sans-serif;
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-base: 16px;
+$font-size-lg: 18px;
+$font-size-xl: 20px;
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+$line-height-xs: 1.2;
+$line-height-sm: 1.4;
+$line-height-base: 1.6;
+$line-height-lg: 1.8;
+$line-height-xl: 2;
+
+// Buttons
+$btn-primary: $color-primary;
+$btn-secondary: $color-secondary;
+$btn-text-color: $color-tertiary;
+$btn-hover-color: darken($btn-primary, 10%);
+$btn-border-radius: 4px;
+$btn-padding: 10px 16px;
+$btn-font-size: $font-size-base;
+
+// Spacing
+$space-xs: 4px;
+$space-sm: 8px;
+$space-base: 16px;
+$space-lg: 24px;
+$space-xl: 32px;
+
+// Border radius
+$border-radius-xs: 2px;
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 16px;
+
+// Grid
+$grid-columns: 12;
+$grid-gutter-width: 20px;
+
+// Forms
+$input-padding-x: 8px;
+$input-padding-y: 12px;
+$input-border-radius: 4px;
+$input-border-width: 1px;
+$input-border-color: #ccc;
+$input-font-size: $font-size-base;
+$label-margin-bottom: $space-xs;
+
+// Cards
+$card-border-radius: $border-radius-md;
+$card-padding: $space-base;
+
+// Modal
+$modal-border-radius: $border-radius-md;
+$modal-padding: $space-lg;
+
+// Tooltip
+$tooltip-max-width: 200px;
+$tooltip-color: $color-tertiary;
+$tooltip-background-color: $color-secondary;
+$tooltip-border-radius: $border-radius-sm;
+$tooltip-font-size: $font-size-sm;
+$tooltip-padding: 4px 8px;
+
+// Alert
+$alert-padding: 12px;
+$alert-border-radius: $border-radius-sm;
+$alert-font-size: $font-size-sm;
+$alert-success-background-color: $color-success;
+$alert-warning-background-color: $color-warning;
+$alert-error-background-color: $color-error;
+
+// Navbar
+$navbar-height: 60px;
+$navbar-background-color: $color-secondary;
+$navbar-text-color: $color-tertiary;
+$navbar-hover-color: $color-primary;
+
+// Footer
+$footer-background-color: $color-secondary;
+$footer-text-color: $color-tertiary;
+
+// Slider
+$slider-handle-width: 20px;
+$slider-track-height: 4px;
+$slider-handle-background-color: $color-primary;
+$slider-track-background-color: $color-tertiary;
+
+// Icons
+$icon-size-xs: 16px;
+$icon-size-sm: 24;
+
+// Select
+$select-background-color: #fff;
+$select-border-color: $input-border-color;
+$select-border-width: $input-border-width;
+$select-border-radius: $input-border-radius;
+$select-font-size: $font-size-base;
+$select-padding-x: $input-padding-x;
+$select-padding-y: $input-padding-y;
+$select-arrow-color: $color-secondary;
+$select-focus-border-color: $color-primary;
+$select-hover-background-color: #f0f0f0;
+
+// Checkbox
+$checkbox-size: 16px;
+$checkbox-border-width: $input-border-width;
+$checkbox-border-color: $input-border-color;
+$checkbox-border-radius: $input-border-radius;
+$checkbox-background-color: #fff;
+$checkbox-check-color: $color-secondary;
+$checkbox-focus-border-color: $color-primary;
+
+// Radio
+$radio-size: 16px;
+$radio-border-width: $input-border-width;
+$radio-border-color: $input-border-color;
+$radio-border-radius: 50%;
+$radio-background-color: #fff;
+$radio-dot-size: 10px;
+$radio-dot-color: $color-secondary;
+$radio-focus-border-color: $color-primary;
+
+// Toggle
+$toggle-width: 50px;
+$toggle-height: 24px;
+$toggle-border-width: $input-border-width;
+$toggle-border-color: $input-border-color;
+$toggle-border-radius: calc($toggle-height / 2);
+$toggle-background-color: #fff;
+$toggle-knob-width: $toggle-height - 2px;
+$toggle-knob-height: $toggle-knob-width;
+$toggle-knob-color: $color-secondary;
+$toggle-focus-border-color: $color-primary;
+
+// Progress bar
+$progress-height: 4px;
+$progress-border-radius: calc($progress-height / 2);
+$progress-background-color: $color-tertiary;
+$progress-bar-background-color: $color-primary;
+
+// Range slider
+$range-slider-height: 4px;
+$range-slider-thumb-size: 16px;
+$range-slider-thumb-color: $color-primary;
+$range-slider-track-background-color: $color-tertiary;
+
+// Datepicker
+$datepicker-width: 220px;
+$datepicker-padding: $space-xs;
+$datepicker-background-color: #fff;
+$datepicker-border-color: $input-border-color;
+$datepicker-border-radius: $input-border-radius;
+$datepicker-font-size: $font-size-base;
+$datepicker-arrow-color: $color-secondary;
+$datepicker-focus-border-color: $color-primary;
+$datepicker-hover-background-color: #f0f0f0;
+$datepicker-selected-background-color: $color-primary;
+$datepicker-selected-color: #fff;
+
+// Timepicker
+$timepicker-width: 150px;
+$timepicker-padding: $space-xs;
+$timepicker-background-color: #fff;
+$timepicker-border-color: $input-border-color;
+$timepicker-border-radius: $input-border-radius;
+$timepicker-font-size: $font-size-base;
+$timepicker-arrow-color: $color-secondary;
+$timepicker-focus-border-color: $color-primary;
+$timepicker-hover-background-color: #f0f0f0;
+
+// Avatar
+$avatar-width: 40px;
+$avatar-height: 40px;
+$avatar-border-radius: 50%;
+
+// Badge
+$badge-background-color: $color-secondary;
+$badge-color: #fff;
+$badge-padding: $space-xs $space-sm;
+$badge-border-radius: $border-radius-sm;
+$badge-font-size: $font-size-sm;
+
+// Chips
+$chip-background-color: $color-tertiary;
+$chip-color: $color-secondary;
+$chip-padding: $space-xs $space-sm;
+$chip-border-radius: $border-radius-md;
+$chip-font-size: $font-size-base;
