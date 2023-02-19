@@ -24,8 +24,7 @@ class TodoService implements IService {
       case 'get lenght':
         return this.Todo.getLenght()
       default:
-        console.log(`Command '${command}' not recogniezed`)
-        break
+        throw new Error(`Command '${command}' not recogniezed`)
     }
   }
 }

@@ -1,4 +1,4 @@
-import { ITask, ITodo } from '../interfaces/ITodo'
+import { ITask, ITodo } from '../../interfaces/ITodo'
 
 class Todo implements ITodo {
   private Todo: Array<ITask> = []
@@ -7,11 +7,11 @@ class Todo implements ITodo {
     this.Todo = []
   }
 
-  add(_task: ITask) {
+  add(_task: ITask): void {
     this.Todo.push(_task)
   }
 
-  remove(_taks: ITask) {
+  remove(_taks: ITask): boolean {
     // verify if the id exist
     const id = this.Todo.filter((task) => task.id === _taks.id)[0]
 
@@ -28,7 +28,7 @@ class Todo implements ITodo {
     }
   }
 
-  getLenght() {
+  getLenght(): number {
     return this.Todo.length
   }
 }

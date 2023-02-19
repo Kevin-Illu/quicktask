@@ -1,5 +1,5 @@
-import DependencyContainer from './launcher/DependencyContainer.js'
-import Todo from './launcher/features/Todo.js'
+import DependencyContainer from './config/dependencyConfig/DependencyContainer.js'
+import Todo from './features/todo/Todo.js'
 import Launcher from './launcher/Launcher.js'
 
 const container = new DependencyContainer()

@@ -1,6 +1,7 @@
-import DependencyContainer from './DependencyContainer'
-import { ITodo } from './interfaces/ITodo'
-import TodoService from './services/TodoService.js'
+import DependencyContainer from '../config/dependencyConfig/DependencyContainer.js'
+import TodoService from '../services/TodoService.js'
+
+import { ITodo } from '../interfaces/ITodo'
 
 class Launcher {
   private DependencyContainer: DependencyContainer
@@ -17,12 +18,7 @@ class Launcher {
     this.todoService = new TodoService(this.todo)
   }
 
-  run() {
-    this.todoService.executeComand('add', { name: 'hola', id: 1 })
-    this.todoService.executeComand('remove', { name: 'hola', id: 1 })
-    const lenght = this.todoService.executeComand('get lenght')
-    console.log(lenght)
-  }
+  run() {}
 }
 
 export default Launcher
