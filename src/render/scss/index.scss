@@ -1,11 +1,3 @@
-@import './base/normalize';
-@import './base/variables';
+@import './base/normalize.scss';
+@import './base/variables.scss';
 @import './base/styles.scss';
-@import './components/navigationMain';
-@import './components/button';
-@import './components/ContainerApp';
-@import './components/NavBarApps';
-@import './components/Todo/TodoList';
-@import './components/Todo/TodoItem';
-@import './components/Todo/TodoForm';
-@import './components/Todo/InitialScreen';
