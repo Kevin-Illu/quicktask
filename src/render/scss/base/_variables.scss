@@ -200,3 +200,10 @@ $chip-color: $color-secondary;
 $chip-padding: $space-xs $space-sm;
 $chip-border-radius: $border-radius-md;
 $chip-font-size: $font-size-base;
+
+
+// Media queries
+$mq-sm: 576px;
+$mq-md: 768px;
+$mq-lg: 992px;
+$mq-xl: 1200px;

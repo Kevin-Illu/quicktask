@@ -10,7 +10,7 @@ class Launcher extends ViewLauncher {
   private todoService: TodoService
 
   constructor(DependencyContainer: DependencyContainer) {
-    super()
+    super('QuickTask')
     this.DependencyContainer = DependencyContainer
 
     // get the dependency of the DependencyContainer.

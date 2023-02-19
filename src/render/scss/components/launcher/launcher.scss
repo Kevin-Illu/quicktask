@@ -1,0 +1,32 @@
+#view-launcher {
+    width: 100%;
+    height: 100%;
+    grid-template-rows: $space-xl auto $space-xl;
+    font-family: $font-family;
+    display: grid;
+    grid-template-areas:
+        "launcher-topbar"
+        "launcher-content"
+        "launcher-footer";
+}
+
+#launcher__appbar {
+    grid-area: "launcher-topbar";
+    -webkit-app-region: drag;
+
+    .btn {
+        -webkit-app-region: no-drag;
+    }
+}
+
+#launcher__content {
+    grid-area: "launcher-content";
+    height: auto;
+    width: 100%;
+}
+
+#launcher__footer {
+    grid-area: "launcher-footer";
+    height: auto;
+    width: 100%;
+}

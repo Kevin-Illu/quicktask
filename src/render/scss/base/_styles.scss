@@ -31,9 +31,6 @@
 #root {
   height: 100vh;
   width: 100%;
-  display: grid;
-  grid-template-rows: $space-xl auto;
-  font-family: $font-family;
 }
 
 img {
@@ -49,4 +46,21 @@ h6,
 p {
   padding: 0;
   margin: 0;
+}
+
+.container {
+  width: 96%;
+  margin: 0 auto;
+
+  @media screen and (min-width: $mq-sm) and (max-width: $mq-md) {
+    width: 90%;
+  }
+
+  @media screen and (min-width: $mq-lg) and (max-width: $mq-xl) {
+    width: 86%;
+  }
+
+  @media screen and (min-width: $mq-xl) {
+    width: 80%;
+  }
 }
