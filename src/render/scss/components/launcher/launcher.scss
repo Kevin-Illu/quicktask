@@ -11,13 +11,53 @@
 }
 
 #launcher__appbar {
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
     grid-area: "launcher-topbar";
     -webkit-app-region: drag;
 
-    .btn {
+    .appbar__title {
+        margin: 0 0 0 1rem;
+    }
+
+    & button {
         -webkit-app-region: no-drag;
     }
+
+    #appbar__title {
+        flex: 1;
+    }
+
+    #appbar__current-action {
+        display: grid;
+        place-items: center;
+        flex: 4;
+    }
+
+    #appbar__system-buttons {
+        max-width: 10.4rem;
+
+        flex: 1;
+    }
 }
+
+
+#appbar__system-buttons {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & button {
+        height: 100%;
+        width: 100%;
+    }
+}
+
+
 
 #launcher__content {
     grid-area: "launcher-content";

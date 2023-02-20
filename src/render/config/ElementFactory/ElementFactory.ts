@@ -1,8 +1,9 @@
-import { ElementOptions } from '../../interfaces/IElementFactory'
+import { IElementOptions } from '../../interfaces/IElementFactory'
 
 class ElementFactory {
   static supportedTypes = new Map<string, boolean>([
     ['input', true],
+    ['img', true],
     ['textarea', true],
     ['select', true],
     ['option', true],
@@ -39,7 +40,7 @@ class ElementFactory {
 
   public createElement(
     type: string,
-    options: ElementOptions = {}
+    options: IElementOptions = {}
   ): HTMLElement {
     if (!ElementFactory.supportedTypes.has(type)) {
       throw new Error(`Element type "${type}" not supported.`)
@@ -61,9 +62,11 @@ class ElementFactory {
     if (options.events) {
       Object.keys(options.events).forEach((key) => {
         if (!options.events) return
+        console.log({ key, event: options.events[key] })
         element.addEventListener(key, options.events[key])
       })
     }
+
     return element
   }
 }

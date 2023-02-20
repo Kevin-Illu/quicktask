@@ -1,16 +1,16 @@
 import ElementFactory from './ElementFactory.js'
-import { ElementOptions } from '../../interfaces/IElementFactory'
+import { IElementOptions } from '../../interfaces/IElementFactory'
 
 class htmlElement extends ElementFactory {
   public element: HTMLElement
   public children: htmlElement[] = []
 
-  constructor(type: string, options: ElementOptions) {
+  constructor(type: string, options: IElementOptions) {
     super()
     this.element = this.createElement(type, options)
   }
 
-  addClassList(styles: string[]) {
+  addClasList(styles: string[]) {
     styles.forEach((style) => this.element.classList.add(style))
   }
 

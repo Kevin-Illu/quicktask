@@ -1,0 +1,23 @@
+button {
+    border-radius: $btn-border-radius;
+    font-size: $btn-font-size;
+    border: none;
+}
+
+.btn {
+    background-color: $color-tertiary;
+
+    &-icon-text {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: .4rem;
+    }
+
+    &-icon,
+    &-text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

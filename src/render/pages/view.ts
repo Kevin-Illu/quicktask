@@ -1,10 +1,11 @@
 import htmlElement from '../config/ElementFactory/htmlElement.js'
 
 abstract class View extends htmlElement {
-  public element: any
+  public view: HTMLElement
 
-  constructor(id: string) {
-    super('div', { attributes: { name: 'view-container', id } })
+  constructor(type: string, id: string) {
+    super(type, { attributes: { name: 'view-container', id } })
+    this.view = this.element
   }
 
   addLayout(layout: string) {

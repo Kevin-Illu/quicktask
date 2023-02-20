@@ -17,16 +17,19 @@ function createWindow() {
     },
   })
 
-  ipcMain.on('btn-event', (event: any, action: string) => {
-    const actions: any = {
-      maximize: () => win.maximize(),
-      minimize: () => win.minimize(),
-      close: () => win.close(),
-      rezise: () => win.unmaximize(),
-    }
+  ipcMain.on(
+    'btn-event',
+    (event: any, action: 'close' | 'maximize' | 'resize' | 'minimize') => {
+      const actions: any = {
+        maximize: () => win.maximize(),
+        minimize: () => win.minimize(),
+        close: () => win.close(),
+        rezise: () => win.unmaximize(),
+      }
 
-    actions[action]()
-  })
+      actions[action]()
+    }
+  )
 
   win.loadFile('../../index.html')
   win.webContents.openDevTools({ mode: 'detach' })
