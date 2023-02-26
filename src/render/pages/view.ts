@@ -8,14 +8,19 @@ abstract class View extends htmlElement {
     this.view = this.element
   }
 
-  addLayout(layout: string) {
+  public addLayout(layout: string) {
     try {
-      this.element.innerHTML = layout
+      this.view.innerHTML = layout
     } catch (error) {
       console.error(
         `the layout passed can be inside of ${this.element}: \n\n ${error}`
       )
     }
+  }
+
+  public render(parent: HTMLElement): void {
+    // this.removeChildren(parent)
+    parent.appendChild(this.view)
   }
 }
 

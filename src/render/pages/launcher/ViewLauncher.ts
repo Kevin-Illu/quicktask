@@ -3,31 +3,32 @@ import { closeButton, minimizeButton, resizeButton } from './actionButtons.js'
 
 class ViewLauncher extends View {
   private title: string
-  private headerContainer: HTMLElement
-  private systemButtonsContainer: HTMLElement
-  private mainContainer: HTMLElement
-  private footerContainer: HTMLElement
+  private action: string
+  public headerContainer: HTMLElement
+  public systemButtonsContainer: HTMLElement
+  public mainContainer: HTMLElement
+  public footerContainer: HTMLElement
 
   constructor(title: string) {
     // this.view: principal containers
     super('div', 'view-launcher')
     // set local title
     this.title = title
-    // adding a layout
+    this.action = ''
+
     this.addLayout(`
         <header id="launcher__appbar">
           <div class="appbar__title">
-            <p class="title">${this.title}</p>
+            <p id="title">${this.title}</p>
           </div>
           <div id="appbar__current-action">
-            <p>current action</p>
+            <p id="action">${this.action}</p>
           </div>
           <div id="appbar__system-buttons">
           </div>
         </header>
         <main id="launcher__content">
-          <div class="container">
-          </div>
+          <div class="container"></div>
         </main>
         <footer id="launcher__footer">
           <div class="container">
@@ -44,7 +45,7 @@ class ViewLauncher extends View {
     ) as HTMLElement
 
     this.mainContainer = this.view.querySelector(
-      '#launcher__content'
+      '#launcher__content div'
     ) as HTMLElement
 
     this.footerContainer = this.view.querySelector(
@@ -54,13 +55,19 @@ class ViewLauncher extends View {
     this.appendSystemButtons()
   }
 
-  setNewTitle(title: string) {
+  public setNewTitle(title: string) {
     this.title = title
-    const titleElement = this.view.querySelector('.title') as HTMLElement
+    const titleElement = this.view.querySelector('#title') as HTMLElement
     titleElement.textContent = title
   }
 
-  appendSystemButtons() {
+  public setCurrentAction = (actionName: string) => {
+    this.action = actionName
+    const actionElement = this.view.querySelector('#action') as HTMLElement
+    actionElement.textContent = actionName
+  }
+
+  private appendSystemButtons() {
     const close = closeButton.element
     const resize = resizeButton.element
     const minimize = minimizeButton.element

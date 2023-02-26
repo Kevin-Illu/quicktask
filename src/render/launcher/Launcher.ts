@@ -2,25 +2,37 @@ import DependencyContainer from '../config/dependencyConfig/DependencyContainer.
 import TodoService from '../services/TodoService.js'
 
 import { ITodo } from '../interfaces/ITodo'
-import ViewLauncher from '../pages/launcher/view.js'
+import ViewLauncher from '../pages/launcher/ViewLauncher.js'
+import ViewTodo from '../pages/features/todo/ViewTodo.js'
+import View from '../pages/view.js'
 
-class Launcher extends ViewLauncher {
+class Launcher {
   private DependencyContainer: DependencyContainer
-  private todo: ITodo
-  private todoService: TodoService
+  public ViewContainer: ViewLauncher
 
-  constructor(DependencyContainer: DependencyContainer) {
-    super('QuickTask')
+  // to create an aplication we need this things
+
+  private Todo: ITodo // app
+  private ViewTodo: View // view
+  private TodoService: TodoService // service
+
+  constructor(DependencyContainer: DependencyContainer, view: ViewLauncher) {
+    this.ViewContainer = view
     this.DependencyContainer = DependencyContainer
 
     // get the dependency of the DependencyContainer.
-    this.todo = this.DependencyContainer.resolve<ITodo>('Todo')
+    this.Todo = this.DependencyContainer.resolve<ITodo>('Todo')
+    this.TodoService = new TodoService(this.Todo)
+    this.ViewTodo = new ViewTodo(this.TodoService, {
+      setCurrentAction: this.ViewContainer.setCurrentAction,
+    })
 
     // create a dependency service to perform operations
-    this.todoService = new TodoService(this.todo)
   }
 
-  run() {}
+  run() {
+    this.ViewTodo.render(this.ViewContainer.mainContainer)
+  }
 }
 
 export default Launcher

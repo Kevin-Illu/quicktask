@@ -26,9 +26,9 @@ class htmlElement extends ElementFactory {
     this.element.removeChild(child.element)
   }
 
-  removeChildren() {
-    while (this.element.firstChild) {
-      this.element.removeChild(this.element.firstChild)
+  removeChildren(parent: HTMLElement = this.element) {
+    while (parent.firstChild) {
+      parent.removeChild(parent.firstChild)
     }
     this.children = []
   }

@@ -62,7 +62,6 @@ class ElementFactory {
     if (options.events) {
       Object.keys(options.events).forEach((key) => {
         if (!options.events) return
-        console.log({ key, event: options.events[key] })
         element.addEventListener(key, options.events[key])
       })
     }

@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-vars */
 export interface ITodo {
-  // eslint-disable-next-line no-unused-vars
+  title: string
+  todos: ITask[]
   add(_task: ITask): void
-  // eslint-disable-next-line no-unused-vars
-  remove(_task: ITask): boolean
+  remove(id: number): boolean
   getLenght(): number
+  getTodoById(id: number): any
 }
 
 export interface ITask {

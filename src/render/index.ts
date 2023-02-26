@@ -1,6 +1,7 @@
 import DependencyContainer from './config/dependencyConfig/DependencyContainer.js'
 import Todo from './features/todo/Todo.js'
 import Launcher from './launcher/Launcher.js'
+import ViewLauncher from './pages/launcher/ViewLauncher.js'
 
 try {
   // get a root of the aplication
@@ -11,9 +12,9 @@ try {
   container.register('Todo', new Todo())
 
   // inicializing the app with all dependencies loaded >w<
-  const launcher = new Launcher(container)
+  const launcher = new Launcher(container, new ViewLauncher('QuickTask'))
 
-  root.appendChild(launcher.element)
+  root.appendChild(launcher.ViewContainer.view)
 
   launcher.run()
 } catch (error) {

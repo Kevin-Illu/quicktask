@@ -1,35 +1,41 @@
 import { ITask, ITodo } from '../../interfaces/ITodo'
 
 class Todo implements ITodo {
-  private Todo: Array<ITask> = []
+  public todos: ITask[]
+  public title: string
 
   constructor() {
-    this.Todo = []
+    this.todos = [
+      { id: 1, name: 'hacer oficio' },
+      { id: 2, name: 'llenar los botes de agua' },
+      { id: 3, name: 'seguir con la app' },
+    ]
+    this.title = 'TaskManagement'
   }
 
-  add(_task: ITask): void {
-    this.Todo.push(_task)
+  public add = (_task: ITask): void => {
+    this.todos.push(_task)
   }
 
-  remove(_taks: ITask): boolean {
-    // verify if the id exist
-    const id = this.Todo.filter((task) => task.id === _taks.id)[0]
-
-    // if exist do this
-    if (id) {
-      this.Todo = this.Todo.filter((task) => {
-        return task.id !== _taks.id
-      })
-      console.log(`Removed task '${_taks.id}'`)
+  public remove = (id: number): boolean => {
+    try {
+      this.todos = this.todos.filter((task) => task.id !== id)
+      console.log(`Removed task '${id}'`)
       return true
-    } else {
-      console.log(`Task '${_taks.id}' not found :c`)
+    } catch (error) {
+      console.log(`Task '${id}' not found :c`)
       return false
     }
   }
 
-  getLenght(): number {
-    return this.Todo.length
+  public getLenght = (): number => {
+    return this.todos.length
+  }
+
+  public getTodoById = (id: number) => {
+    const result = this.todos.filter((todo) => todo.id === id)
+    console.log(result)
+    return result
   }
 }
 
