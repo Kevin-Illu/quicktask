@@ -3,6 +3,11 @@ import Todo from './features/todo/Todo.js'
 import Launcher from './launcher/Launcher.js'
 import ViewLauncher from './pages/launcher/ViewLauncher.js'
 
+// TODO: implement the obserber patter for update the view
+// when something changes
+
+// INFO: keep learn more to continue the project UnU
+
 try {
   // get a root of the aplication
   const root = document.querySelector('#root') as HTMLElement
