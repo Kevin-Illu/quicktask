@@ -26,6 +26,7 @@ class TaskForm {
     this._title = document.createElement('input')
     this._title.placeholder = 'Add a new task to your project'
     this._title.type = 'text'
+    this._title.spellcheck = false
     this._title.setAttribute('autofocus', 'true')
     addStyles(this._title, ['titleAndSelectContainer__title'])
 
@@ -36,6 +37,8 @@ class TaskForm {
 
     this._description = document.createElement('textarea')
     this._description.placeholder = 'Do you want to add a description :v7'
+    this._description.spellcheck = false;
+    this._description.addEventListener('input', () => changeHeight(this._description))
     addStyles(this._description, ['add-form__description'])
 
     this._selectState.cleanOptions()
@@ -102,6 +105,11 @@ class TaskForm {
       updateFunc(task)
     }
   }
+}
+
+function changeHeight(input: HTMLTextAreaElement) {
+  input.style.height = 'auto';
+  input.style.height = input.scrollHeight + 'px';
 }
 
 export default TaskForm

@@ -1,60 +1,62 @@
 #todo-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem 0;
+  height: fit-content;
 }
 
 .add-form__titleAndSelectContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
 
-    input, select {
-        padding: .5rem 1rem;
-        margin: 0;
-        border-radius: 20px;
-        border: none;
-        outline: none;
-        font-size: 1.4rem;
-        height: 100%;
-    }
-
-    input[type="text"] {
-        width: 100%;
-        font-weight: 700;
-        font-size: 2rem;
-        &:hover {
-            background-color: #fcfcfc;
-        }
-    }
-}
-
-.add-form__description {
+  input, select {
+    padding: .5rem 1rem;
+    margin: 0;
     border: none;
     outline: none;
     font-size: 1.4rem;
-    padding: .5rem 1rem;
-    border-radius: 20px;
-    resize: none;
-    height: 8rem;
+    height: 100%;
+  }
 
-    &:hover {
-        background-color: #fcfcfc;
-    }
+  select {
+    border-radius: 20px;
+    border: solid 2px #ededed;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    font-weight: 700;
+    font-size: 2rem;
+  }
+}
+
+.add-form__description {
+  border: none;
+  outline: none;
+  font-size: 1.4rem;
+  padding: .5rem 1rem;
+  border-radius: 20px;
+  resize: none;
+  height: 8rem;
+
+  &:hover {
+    background-color: #fcfcfc;
+  }
 }
 
 .btn-add-task {
-    width: fit-content;
-    padding: 0 1rem;
-    border-radius: 20px;
-    outline: none;
-    cursor: pointer;
-    font-weight: 700;
-    text-transform: capitalize;
-    display: inline-block;
-    align-self: flex-end;
-    background-color: #fff;
-    border: solid 2px #ededed;
+  width: fit-content;
+  padding: 0 1rem;
+  border-radius: 20px;
+  outline: none;
+  cursor: pointer;
+  font-weight: 700;
+  text-transform: capitalize;
+  display: inline-block;
+  align-self: flex-end;
+  background-color: #fff;
+  border: solid 2px #ededed;
 }
