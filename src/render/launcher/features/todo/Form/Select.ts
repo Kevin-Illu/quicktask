@@ -5,9 +5,9 @@ class Select {
   private states: TodoState[]
 
   constructor(id: string) {
-    this.select = document.createElement('select');
-    this.select.setAttribute('id', id);
-    this.states = ['open', 'work', 'on hold', 'done'];
+    this.select = document.createElement('select')
+    this.select.setAttribute('id', id)
+    this.states = ['open', 'work', 'on hold', 'done']
   }
 
   public setOptions = (options: string[]): void => {

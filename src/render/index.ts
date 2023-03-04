@@ -38,5 +38,4 @@ Container.containerNavBar.appendChild(Navbar.NavBarContent)
 navigate.setTitle('TodoApp')
 
 root.appendChild(Container.container)
-Todo.displayAddForm();
-
+Todo.displayTodos()
