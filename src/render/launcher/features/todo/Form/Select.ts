@@ -7,7 +7,14 @@ class Select {
   constructor(id: string) {
     this.select = document.createElement('select')
     this.select.setAttribute('id', id)
-    this.states = ['Active', 'To-do', 'Waiting', 'Canceled', 'Deferred', 'Completed']
+    this.states = [
+      'Active',
+      'To-do',
+      'Waiting',
+      'Canceled',
+      'Deferred',
+      'Completed',
+    ]
   }
 
   public setOptions = (options: string[]): void => {

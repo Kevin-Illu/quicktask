@@ -66,11 +66,11 @@ class TodoApp {
     this.todos = this.todos.map((todo) =>
       todo.id === id
         ? {
-          id: todo.id,
-          title,
-          description,
-          state,
-        }
+            id: todo.id,
+            title,
+            description,
+            state,
+          }
         : todo
     )
     this._commit()
