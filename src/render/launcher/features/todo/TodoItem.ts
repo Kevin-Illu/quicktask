@@ -55,7 +55,7 @@ class TodoItem {
 
   private setStateColor = (state: TodoState): void => {
     let color: string = state
-    if (state === 'on hold') color = 'on-hold'
+    if (state === 'In progress') color = 'In-progress'
 
     addStyles(this.state, [color])
   }

@@ -25,6 +25,7 @@
     border-radius: 8px;
     align-self: flex-start;
     margin: 1.6rem 0 0;
+    text-align: center;
 
     p {
       padding: 0;
@@ -32,28 +33,28 @@
     }
   }
 
-  .on-hold {
-    background-color: rgb(244, 84, 84);
-
-    p {
-      color: #fff;
-    }
+  .Deferred {
+    background-color: #B0C4DE;
   }
 
-  .done {
-    background-color: rgb(81, 225, 65);
+  .Completed {
+    background-color: #90EE90;
   }
 
-  .work {
-    background-color: royalblue;
-
-    p {
-      color: #fff;
-    }
+  .Active {
+    background-color: #87CEFA;
   }
 
-  .open {
-    background-color: rgb(254, 242, 73);
+  .To-do {
+    background-color: #F0E68C;
+  }
+
+  .Canceled {
+    background-color: #FF6347;
+  }
+
+  .Waiting {
+    background-color: #FFA07A;
   }
 }
 

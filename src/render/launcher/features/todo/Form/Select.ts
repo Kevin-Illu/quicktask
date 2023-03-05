@@ -2,12 +2,12 @@ import { TodoState } from '../../../../interfaces/components'
 
 class Select {
   public select: HTMLSelectElement
-  private states: TodoState[]
+  public states: TodoState[]
 
   constructor(id: string) {
     this.select = document.createElement('select')
     this.select.setAttribute('id', id)
-    this.states = ['open', 'work', 'on hold', 'done']
+    this.states = ['Active', 'To-do', 'Waiting', 'Canceled', 'Deferred', 'Completed']
   }
 
   public setOptions = (options: string[]): void => {
@@ -21,7 +21,7 @@ class Select {
 
   public getValue = (): TodoState => {
     const option = this.select.options[this.select.selectedIndex]
-    return option.value === 'add state' ? 'open' : (option.value as TodoState)
+    return option.value === 'add state' ? 'To-do' : (option.value as TodoState)
   }
 
   public setCurrentValue = (state: TodoState): void => {

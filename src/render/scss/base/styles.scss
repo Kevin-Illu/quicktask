@@ -48,3 +48,16 @@ h1,h2, h3, h4, h5, h6 {
 p {
   padding: 0;
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #CCCCCC;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #FFFFFF;
+}

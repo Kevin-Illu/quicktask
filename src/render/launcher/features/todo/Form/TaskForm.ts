@@ -39,12 +39,12 @@ class TaskForm {
     this._description.placeholder = 'Do you want to add a description :v7'
     this._description.spellcheck = false
     this._description.addEventListener('input', () =>
-      changeHeight(this._description)
+      this.changeHeight(this._description)
     )
     addStyles(this._description, ['add-form__description'])
 
     this._selectState.cleanOptions()
-    this._selectState.setOptions(['open', 'work', 'on hold', 'done'])
+    this._selectState.setOptions(this._selectState.states.sort())
 
     const settings: IbtnSettings = {
       text: 'Add',
@@ -107,11 +107,11 @@ class TaskForm {
       updateFunc(task)
     }
   }
-}
 
-function changeHeight(input: HTMLTextAreaElement) {
-  input.style.height = 'auto'
-  input.style.height = input.scrollHeight + 'px'
+  private changeHeight = (input: HTMLTextAreaElement): void => {
+    input.style.height = 'auto'
+    input.style.height = input.scrollHeight + 'px'
+  }
 }
 
 export default TaskForm

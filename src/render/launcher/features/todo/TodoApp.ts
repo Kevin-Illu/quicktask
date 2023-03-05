@@ -52,7 +52,7 @@ class TodoApp {
 
   private addTodo = ({ title, description, state }: ITodo) => {
     const todo = {
-      id: this.todos.length > 0 ? this.todos[this.todos.length - 1].id + 1 : 1,
+      id: Date.now(),
       title,
       description,
       state,
@@ -66,11 +66,11 @@ class TodoApp {
     this.todos = this.todos.map((todo) =>
       todo.id === id
         ? {
-            id: todo.id,
-            title,
-            description,
-            state,
-          }
+          id: todo.id,
+          title,
+          description,
+          state,
+        }
         : todo
     )
     this._commit()
