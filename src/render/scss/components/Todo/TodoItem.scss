@@ -20,17 +20,24 @@
   }
 
   .todo-item__state {
-    width: 1.6rem;
-    height: 1.6rem;
-    border-radius: 100%;
-    min-width: 1.6rem;
-    min-height: 1.6rem;
+    width: fit-content;
+    padding: .2rem .4rem;
+    border-radius: 8px;
     align-self: flex-start;
     margin: 1.6rem 0 0;
+
+    p {
+      padding: 0;
+      margin: 0;
+    }
   }
 
   .on-hold {
     background-color: rgb(244, 84, 84);
+
+    p {
+      color: #fff;
+    }
   }
 
   .done {
@@ -39,6 +46,10 @@
 
   .work {
     background-color: royalblue;
+
+    p {
+      color: #fff;
+    }
   }
 
   .open {

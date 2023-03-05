@@ -521,22 +521,30 @@ p {
   font-size: 1.6rem;
 }
 .todo-item__container .todo-item__state {
-  width: 1.6rem;
-  height: 1.6rem;
-  border-radius: 100%;
-  min-width: 1.6rem;
-  min-height: 1.6rem;
+  width: fit-content;
+  padding: 0.2rem 0.4rem;
+  border-radius: 8px;
   align-self: flex-start;
   margin: 1.6rem 0 0;
 }
+.todo-item__container .todo-item__state p {
+  padding: 0;
+  margin: 0;
+}
 .todo-item__container .on-hold {
   background-color: rgb(244, 84, 84);
+}
+.todo-item__container .on-hold p {
+  color: #fff;
 }
 .todo-item__container .done {
   background-color: rgb(81, 225, 65);
 }
 .todo-item__container .work {
   background-color: royalblue;
+}
+.todo-item__container .work p {
+  color: #fff;
 }
 .todo-item__container .open {
   background-color: rgb(254, 242, 73);
@@ -567,6 +575,7 @@ p {
   flex-direction: column;
   gap: 1.5rem;
   padding: 1rem 0;
+  height: fit-content;
 }
 
 .add-form__titleAndSelectContainer {
@@ -578,19 +587,19 @@ p {
 .add-form__titleAndSelectContainer input, .add-form__titleAndSelectContainer select {
   padding: 0.5rem 1rem;
   margin: 0;
-  border-radius: 20px;
   border: none;
   outline: none;
   font-size: 1.4rem;
   height: 100%;
 }
+.add-form__titleAndSelectContainer select {
+  border-radius: 20px;
+  border: solid 2px #ededed;
+}
 .add-form__titleAndSelectContainer input[type=text] {
   width: 100%;
   font-weight: 700;
   font-size: 2rem;
-}
-.add-form__titleAndSelectContainer input[type=text]:hover {
-  background-color: #fcfcfc;
 }
 
 .add-form__description {

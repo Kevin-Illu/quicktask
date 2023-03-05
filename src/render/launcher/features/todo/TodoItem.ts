@@ -19,6 +19,7 @@ class TodoItem {
     this.container = document.createElement('div')
     addStyles(this.container, ['todo-item__container'])
     this.state = document.createElement('div')
+    this.state.innerHTML = `<p>${todo.state}</p>`
     addStyles(this.state, ['todo-item__state'])
     this.title = document.createElement('p')
     addStyles(this.title, ['todo-item__title'])
