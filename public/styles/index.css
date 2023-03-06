@@ -326,6 +326,7 @@ template {
   display: grid;
   grid-template-rows: 34px auto;
   font-family: "Noto Sans";
+  font-size: 16px;
 }
 
 @font-face {
@@ -362,6 +363,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p {
+  font-size: 16px;
   padding: 0;
 }
 
@@ -421,12 +423,12 @@ p {
 }
 
 .btn {
-  border: solid 2px;
+  border: solid 1px;
   border-color: #ededed;
   transition: background-color 0.2s ease-in-out;
 }
 .btn:hover {
-  background-color: rgb(228, 228, 228);
+  background-color: #eee;
 }
 
 .btn div {
@@ -481,8 +483,8 @@ p {
 
 .navbar-btn {
   padding: 0;
-  border-radius: 1.5rem;
-  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  background-color: #fff;
 }
 
 .navbar-btn div {
@@ -519,8 +521,8 @@ p {
   justify-content: space-between;
   align-items: center;
   padding: 0 2rem;
-  border-radius: 2.25rem;
-  border: 2px solid #ededed;
+  border-radius: 20px;
+  border: 1px solid #ededed;
 }
 
 .todo-item__container {
@@ -601,23 +603,28 @@ p {
 .add-form__titleAndSelectContainer input, .add-form__titleAndSelectContainer select {
   padding: 0.5rem 1rem;
   margin: 0;
-  border: none;
   outline: none;
   font-size: 1.4rem;
   height: 100%;
 }
 .add-form__titleAndSelectContainer select {
+  font-size: 16px;
   border-radius: 20px;
-  border: solid 2px #ededed;
+  border: solid 1px #ededed;
 }
 .add-form__titleAndSelectContainer input[type=text] {
   width: 100%;
   font-weight: 700;
   font-size: 2rem;
+  border: solid 1px #fff;
+  border-radius: 20px;
+}
+.add-form__titleAndSelectContainer input[type=text]:hover {
+  border-color: #ededed;
 }
 
 .add-form__description {
-  border: none;
+  border: solid 1px #fff;
   outline: none;
   font-size: 1.4rem;
   padding: 0.5rem 1rem;
@@ -626,7 +633,7 @@ p {
   height: 8rem;
 }
 .add-form__description:hover {
-  background-color: #fcfcfc;
+  border-color: #ededed;
 }
 
 .btn-add-task {
@@ -640,7 +647,7 @@ p {
   display: inline-block;
   align-self: flex-end;
   background-color: #fff;
-  border: solid 2px #ededed;
+  border: solid 1px #ededed;
 }
 
 .InitialScreen {

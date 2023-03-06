@@ -17,7 +17,7 @@ const navigate = new MainNavigationBar(
   [btnMinimize, btnMaximize, btnClose]
 )
 const Todo = new TodoApp(Container.containerApp) // apps
-
+// TODO:
 const btnTodoSettings: IbtnSettings = {
   iconPath: './public/assets/checklist.svg',
   text: 'Task',

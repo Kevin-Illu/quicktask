@@ -15,26 +15,33 @@
   input, select {
     padding: .5rem 1rem;
     margin: 0;
-    border: none;
     outline: none;
     font-size: 1.4rem;
     height: 100%;
   }
 
   select {
+    font-size: 16px;
     border-radius: 20px;
-    border: solid 2px #ededed;
+    border: solid 1px #ededed;
   }
 
   input[type="text"] {
     width: 100%;
     font-weight: 700;
     font-size: 2rem;
+    border: solid 1px #fff;
+    border-radius: 20px;
+
+
+    &:hover {
+      border-color: #ededed;
+    }
   }
 }
 
 .add-form__description {
-  border: none;
+  border: solid 1px #fff;
   outline: none;
   font-size: 1.4rem;
   padding: .5rem 1rem;
@@ -43,7 +50,7 @@
   height: 8rem;
 
   &:hover {
-    background-color: #fcfcfc;
+    border-color: #ededed;
   }
 }
 
@@ -58,5 +65,5 @@
   display: inline-block;
   align-self: flex-end;
   background-color: #fff;
-  border: solid 2px #ededed;
+  border: solid 1px #ededed;
 }
