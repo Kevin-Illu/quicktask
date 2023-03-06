@@ -33,7 +33,7 @@ class TodoApp {
   public displayUpdateForm = (todo: ITodo) => {
     if (!this.parent) return
     RemoveChild(this.parent)
-    this.taskForm.updateForm(todo, this.editTodo)
+    this.taskForm.updateForm(todo, this.updateTodo)
     this.parent.appendChild(this.taskForm.form)
   }
 
@@ -44,13 +44,17 @@ class TodoApp {
       this.displayAddForm,
       this.displayUpdateForm,
       this.deleteTodo,
-      this.editTodo,
+      this.updateTodo,
     ]
     const todoList = new TodoList(this.todos, handlers)
     this.parent.appendChild(todoList.list)
   }
 
-  private addTodo = ({ title, description, state }: ITodo) => {
+  public getTodos = (): ITodo[] => {
+    return this.todos
+  }
+
+  public addTodo = ({ title, description, state }: ITodo) => {
     const todo = {
       id: Date.now(),
       title,
@@ -62,7 +66,7 @@ class TodoApp {
     this._commit()
   }
 
-  private editTodo = ({ id, title, description, state }: ITodo) => {
+  public updateTodo = ({ id, title, description, state }: ITodo) => {
     this.todos = this.todos.map((todo) =>
       todo.id === id
         ? {
@@ -76,7 +80,7 @@ class TodoApp {
     this._commit()
   }
 
-  private deleteTodo = (id: number) => {
+  public deleteTodo = (id: number) => {
     this.todos = this.todos.filter((todo) => todo.id !== id)
     this._commit()
   }
