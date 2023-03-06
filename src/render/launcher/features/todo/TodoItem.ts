@@ -54,7 +54,7 @@ class TodoItem {
   }
 
   private setStateColor = (state: TodoState): void => {
-    let color: string = state
+    const color: string = state
     addStyles(this.state, [color])
   }
 }
