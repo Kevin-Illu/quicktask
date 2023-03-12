@@ -10,6 +10,8 @@ Before you get started, make sure you have the following installed on your machi
 
 - Git
 - npm
+- typescript global
+- sass global
 
 ## Project Description
 
@@ -38,7 +40,7 @@ npm install
 ## Run the project:
 
 ```bash
-npm run start
+npm run dev
 ```
 
 If you want to contribute to the development of `QuickTask`, you can also run the following commands to compile the TypeScript and Sass code:
@@ -48,7 +50,7 @@ To compile TypeScript while writing code:
 tsc --w
 ```
 
-To compile Sass files to CSS files:
+To compile Sass files to CSS files while editing scss files run this comand:
 
 ```bash
 npm run css
