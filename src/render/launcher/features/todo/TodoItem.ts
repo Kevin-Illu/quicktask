@@ -1,61 +1,73 @@
+/* eslint-disable  no-unused-vars */
 import Button from '../../../components/Button.js'
-import { IbtnSettings, TodoState } from '../../../interfaces/components.js'
+import { IbtnSettings } from '../../../interfaces/components.js'
 import { ITodo } from '../../../interfaces/todo.js'
 import { addStyles } from '../../../utils/tools.js'
 
 class TodoItem {
-  public item: HTMLDivElement
-  private container: HTMLDivElement
-  private state: HTMLDivElement
-  private title: HTMLDivElement
+  public item: HTMLElement
+  private deleteTodo: (id: number) => void
+  private updateTodo: (todo: ITodo) => void
+  private goToForm: (todo: ITodo, updateTodo: (todo: ITodo) => void) => void
+  private todo: ITodo
 
-  private containerButtons: HTMLDivElement
-  private btnEdit: Button
-  private btnDelete: Button
+  constructor(todo: ITodo, [goToForm, deleteTodo, updateTodo]: any) {
+    this.todo = todo
+    this.goToForm = goToForm
+    this.deleteTodo = deleteTodo
+    this.updateTodo = updateTodo
 
-  constructor(todo: ITodo, [editForm, remove, edit]: any) {
-    this.item = document.createElement('div')
-    addStyles(this.item, ['todo-item'])
-    this.container = document.createElement('div')
-    addStyles(this.container, ['todo-item__container'])
-    this.state = document.createElement('div')
-    this.state.innerHTML = `<p>${todo.state}</p>`
-    addStyles(this.state, ['todo-item__state'])
-    this.title = document.createElement('p')
-    addStyles(this.title, ['todo-item__title'])
-
-    // set values to title and state
-    this.setStateColor(todo.state)
-    this.title.innerText = todo.title
-
-    this.containerButtons = document.createElement('div')
-    addStyles(this.containerButtons, ['todo-item__containerButtons'])
-    const DSettings: IbtnSettings = {
-      iconPath: './public/assets/delete.svg',
-      action: () => remove(todo.id),
-      styles: ['btn', 'btn-remove'],
-    }
-    this.btnDelete = new Button(DSettings)
-
-    const ESettings: IbtnSettings = {
-      iconPath: './public/assets/edit.svg',
-      action: () => editForm(todo, edit),
-      styles: ['btn', 'btn-edit'],
-    }
-    this.btnEdit = new Button(ESettings)
-
-    this.container.appendChild(this.state)
-    this.container.appendChild(this.title)
-    this.item.appendChild(this.container)
-
-    this.containerButtons.appendChild(this.btnDelete.button)
-    this.containerButtons.appendChild(this.btnEdit.button)
-    this.item.appendChild(this.containerButtons)
+    this.item = this.createItem(todo, this.deleteTodo)
+    this.handleClick()
   }
 
-  private setStateColor = (state: TodoState): void => {
-    const color: string = state
-    addStyles(this.state, [color])
+  private createItem = (
+    todo: ITodo,
+    // eslint-disable-next-line no-unused-vars
+    deleteTodo: (id: number) => void
+  ): HTMLElement => {
+    const item = document.createElement('div')
+    addStyles(item, ['todo-item'])
+
+    const container = document.createElement('div')
+    addStyles(container, ['todo-item__container'])
+
+    const state = document.createElement('div')
+    state.innerHTML = `<p>${todo.state}</p>`
+    addStyles(state, ['todo-item__state', todo.state])
+
+    const title = document.createElement('p')
+    addStyles(title, ['todo-item__title'])
+
+    // set values to title and state
+    title.innerText = todo.title
+
+    const containerButtons = document.createElement('div')
+    addStyles(containerButtons, ['todo-item__containerButtons'])
+    const DSettings: IbtnSettings = {
+      iconPath: './public/assets/delete.svg',
+      action: () => deleteTodo(this.todo.id),
+      styles: ['btn', 'btn-remove'],
+    }
+    const btnDelete = new Button(DSettings)
+
+    container.appendChild(state)
+    container.appendChild(title)
+    item.appendChild(container)
+
+    containerButtons.appendChild(btnDelete.button)
+    item.appendChild(containerButtons)
+
+    return item
+  }
+
+  private handleClick = () => {
+    const todoElement = this.item.querySelector(
+      '.todo-item__container'
+    ) as HTMLElement
+    todoElement.addEventListener('click', () => {
+      this.goToForm(this.todo, this.updateTodo)
+    })
   }
 }
 

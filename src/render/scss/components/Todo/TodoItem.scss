@@ -1,4 +1,5 @@
 .todo-item {
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -60,6 +61,7 @@
 
 
 .todo-item__containerButtons{
+  z-index: 10;
   display: flex;
   justify-content: space-between;
   align-items: center;
