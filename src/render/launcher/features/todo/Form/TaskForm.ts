@@ -16,14 +16,18 @@ class TaskForm {
 
   constructor() {
     this.form = this.createForm()
-    this.title = this.form.querySelector('.titleAndSelectContainer__title') as HTMLInputElement
-    this.description = this.form.querySelector('.add-form__description') as HTMLTextAreaElement
-    this.titleAndSelectContainer = this.form.querySelector('.add-form__titleAndSelectContainer') as HTMLElement
+    this.title = this.form.querySelector(
+      '.titleAndSelectContainer__title'
+    ) as HTMLInputElement
+    this.description = this.form.querySelector(
+      '.add-form__description'
+    ) as HTMLTextAreaElement
+    this.titleAndSelectContainer = this.form.querySelector(
+      '.add-form__titleAndSelectContainer'
+    ) as HTMLElement
 
     this.Select = new Select('todo-state')
-    addStyles(this.Select.select, [
-      'titleAndSelectContainer__selectState',
-    ])
+    addStyles(this.Select.select, ['titleAndSelectContainer__selectState'])
     this.Select.cleanOptions()
     this.Select.setOptions(this.Select.states.sort())
 
@@ -34,8 +38,8 @@ class TaskForm {
       action: () => console.log('hola? para que se usa xD'),
       styles: ['btn-add-task'],
     }
-   this.Button = new Button(settings)
-   this.form.appendChild(this.Button.button)
+    this.Button = new Button(settings)
+    this.form.appendChild(this.Button.button)
   }
 
   public addNewTask = (addFunc: (taks: ITodo) => void) => {
@@ -45,7 +49,7 @@ class TaskForm {
     this.Button.button.onclick = (e) => {
       e.preventDefault()
 
-      if (this.title.value.trim() === '') return;
+      if (this.title.value.trim() === '') return
 
       const task = {
         id: 0,
@@ -67,7 +71,7 @@ class TaskForm {
     this.Button.button.onclick = (e) => {
       e.preventDefault()
 
-      if (this.title.value.trim() === '') return;
+      if (this.title.value.trim() === '') return
 
       const task = {
         id: todo.id,
@@ -81,15 +85,12 @@ class TaskForm {
   }
 
   private createForm = (): HTMLFormElement => {
-
     const form = document.createElement('form')
     form.setAttribute('id', 'todo-form')
     addStyles(form, ['add-form'])
 
     const titleAndSelectContainer = document.createElement('div')
-    addStyles(titleAndSelectContainer, [
-      'add-form__titleAndSelectContainer',
-    ])
+    addStyles(titleAndSelectContainer, ['add-form__titleAndSelectContainer'])
 
     const titleElement = document.createElement('input')
     titleElement.placeholder = 'Add a new task to your project'
@@ -101,11 +102,9 @@ class TaskForm {
     const description = document.createElement('textarea')
     description.placeholder = 'Do you want to add a description?'
     description.spellcheck = false
-    description.addEventListener('input', () =>
-      this.changeHeight(description)
-    )
+    description.addEventListener('input', () => this.changeHeight(description))
     addStyles(description, ['add-form__description'])
-   
+
     titleAndSelectContainer.appendChild(titleElement)
 
     form.appendChild(titleAndSelectContainer)
