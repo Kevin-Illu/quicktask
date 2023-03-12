@@ -1,30 +1,62 @@
+import TodoApp from './features/todo/TodoApp.js'
 import TodoService from './features/todo/TodoService.js'
 import TodoView from './features/todo/ViewTodo.js'
 import LauncherView from './LauncherView.js'
+import ContainerApp from './layout/container.js'
 
-interface IProps {
-  view: LauncherView
-  services?: any
-}
+import MainNavigationBar from './layout/appbar/appbar.js'
+import { btnClose, btnMaximize, btnMinimize } from './layout/appbar/appbarButtons.js'
+import { IbtnSettings } from '../interfaces/components.js'
+import Button from '../components/Button.js'
+import NavBar from './layout/navbar.js'
 
 export default class Launcher {
   private parent: HTMLElement
   private view: LauncherView
+  private container: ContainerApp
+  private navigate: MainNavigationBar
+  private navbar: NavBar
 
+  private todoApp: TodoApp
   private todoService: TodoService
   private todoView: TodoView
 
-  constructor({ view, services }: IProps, parent: HTMLElement) {
-    const { todoService, todoView } = services
-    this.view = view
+  constructor(parent: HTMLElement) {
     this.parent = parent
 
-    this.todoService = todoService
-    this.todoView = todoView()
+    this.container = new ContainerApp()
+    this.navbar = new NavBar() // navbar apps
+
+
+    this.navigate = new MainNavigationBar(
+      ['navigation'],
+      [btnMinimize,
+        btnMaximize,
+        btnClose]
+    )
+
+    this.todoApp = new TodoApp()
+    this.todoService = new TodoService(this.todoApp)
+    this.todoView = new TodoView(this.container.container, this.todoService)
+
+    this.view = new LauncherView({container: this.container, navigate: this.navigate})
+
+    const btnTodoSettings: IbtnSettings = {
+      iconPath: './public/assets/checklist.svg',
+      text: 'task',
+      action: this.todoView.displayTodoList,
+      styles: ['navbar-btn', 'navbar-btn__display-todos', 'btn'],
+    }
+
+    const btnDisplayTodo = new Button(btnTodoSettings).button
+    const apps = [btnDisplayTodo]
+    this.navbar.addApplications(apps)
+    this.container.containerNavBar.appendChild(this.navbar.NavBarContent)
+    this.parent.appendChild(this.container.container)
   }
 
   public run = () => {
     this.view.render(this.parent)
-    // this.todoView.displayTodoList();
+    this.todoView.displayTodoList();
   }
 }

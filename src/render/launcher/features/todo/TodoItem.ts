@@ -11,7 +11,7 @@ class TodoItem {
   private goToForm: (todo: ITodo, updateTodo: (todo: ITodo) => void) => void
   private todo: ITodo
 
-  constructor(todo: ITodo, [goToForm, deleteTodo, updateTodo]: any) {
+  constructor(todo: ITodo, { goToForm, deleteTodo, updateTodo }: any) {
     this.todo = todo
     this.goToForm = goToForm
     this.deleteTodo = deleteTodo

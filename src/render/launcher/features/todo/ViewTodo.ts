@@ -1,47 +1,60 @@
-import { ITodo } from '../../../interfaces/todo'
-import { RemoveChild } from '../../../utils/tools.js'
+// import { ITodo } from '../../../interfaces/todo'
+import TaskForm from './Form/TaskForm.js'
+import TodoList from './TodoList.js'
+import TodoService from './TodoService.js'
 
-interface IViewServices {
-  formService: any
-  todoService: any
-  todolistService: any
-}
+import { RemoveChild } from '../../../utils/tools.js'
 
 class TodoView {
   private parent: HTMLElement
-  private formService: any
-  private todoService: any
-  private todoListService: any
+  private form: TaskForm
+  private todoService: TodoService
 
   constructor(
     parent: HTMLElement,
-    { formService, todoService, todolistService }: IViewServices
+    todoService: TodoService
   ) {
     this.parent = parent
-    this.formService = formService //TODO: make this service
-    this.todoService = todoService //TODO: make this service too
-    this.todoListService = todolistService //TODO: add this too
+    this.form = new TaskForm()
+    this.todoService = todoService
   }
 
-  public displayForm = (action: 'add' | 'update', todo: ITodo): void => {
-    RemoveChild(this.parent)
+  public viewUpdateTaskForm = (args: any) => {
+    const { todo, update } = args;
+    this.form.updateTask(todo, update)
+  }
+
+  public viewAddNewTaskForm = (args: any) => {
+    const { addNewTask } = args
+    this.form.addNewTask(addNewTask)
+  }
+
+  public displayForm = (action: 'add' | 'update', args: any = null) => {
+    if (!args) {
+      console.error('pleas provide args')
+    }
 
     if (action === 'add') {
-      this.formService.displayAddForm(this.todoService.addTodo)
-      this.parent.appendChild(this.todoService.getForm)
+      this.viewAddNewTaskForm(args)
     }
 
     if (action === 'update') {
-      this.formService.displayUpdateForm(todo, this.todoService.updateTodo)
-      this.parent.appendChild(this.todoService.getForm)
+      this.viewUpdateTaskForm(args)
     }
-
-    throw new Error('action invalid, please put any of this: update or add')
   }
 
   public displayTodoList = () => {
     RemoveChild(this.parent)
-    this.todoListService.executeCommand('[ACTION] display todos')
+
+    const handlers = {
+      displayForm: this.displayForm,
+      update: this.todoService.updateTodo,
+      delete: this.todoService.deleteTodo,
+      add: this.todoService.addNewTodo
+    }
+
+    const todoList = new TodoList(this.todoService.getTodos(), handlers)
+    this.parent.appendChild(todoList.list)
   }
 }
 
