@@ -26,14 +26,14 @@ class TodoApp {
   public displayAddForm = () => {
     if (!this.parent) return
     RemoveChild(this.parent)
-    this.taskForm.addForm(this.addTodo)
+    this.taskForm.addNewTask(this.addTodo)
     this.parent.appendChild(this.taskForm.form)
   }
 
   public displayUpdateForm = (todo: ITodo) => {
     if (!this.parent) return
     RemoveChild(this.parent)
-    this.taskForm.updateForm(todo, this.updateTodo)
+    this.taskForm.updateTask(todo, this.updateTodo)
     this.parent.appendChild(this.taskForm.form)
   }
 
@@ -70,11 +70,11 @@ class TodoApp {
     this.todos = this.todos.map((todo) =>
       todo.id === id
         ? {
-            id: todo.id,
-            title,
-            description,
-            state,
-          }
+          id: todo.id,
+          title,
+          description,
+          state,
+        }
         : todo
     )
     this._commit()

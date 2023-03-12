@@ -1,116 +1,127 @@
-import Select from './Select.js'
+/* eslint-disable no-unused-vars */
+import { IbtnSettings } from '../../../../interfaces/components'
+import { ITodo } from '../../../../interfaces/todo'
 
-import Button from '../../../../components/Button.js'
-import { IbtnSettings } from '../../../../interfaces/components.js'
-import { ITodo } from '../../../../interfaces/todo.js'
 import { addStyles } from '../../../../utils/tools.js'
+import Button from '../../../../components/Button.js'
+import Select from './Select.js'
 
 class TaskForm {
   public form: HTMLFormElement
-  private _titleAndSelectContainer: HTMLDivElement
-  private _title: HTMLInputElement
-  public _selectState: Select
-  private _description: HTMLTextAreaElement
-  private _actionForm: Button
+  private title: HTMLInputElement
+  private description: HTMLTextAreaElement
+  private Button: Button
+  private Select: Select
+  private titleAndSelectContainer: HTMLElement
 
   constructor() {
-    this.form = document.createElement('form')
-    this.form.setAttribute('id', 'todo-form')
-    addStyles(this.form, ['add-form'])
+    this.form = this.createForm()
+    this.title = this.form.querySelector('.titleAndSelectContainer__title') as HTMLInputElement
+    this.description = this.form.querySelector('.add-form__description') as HTMLTextAreaElement
+    this.titleAndSelectContainer = this.form.querySelector('.add-form__titleAndSelectContainer') as HTMLElement
 
-    this._titleAndSelectContainer = document.createElement('div')
-    addStyles(this._titleAndSelectContainer, [
-      'add-form__titleAndSelectContainer',
-    ])
-
-    this._title = document.createElement('input')
-    this._title.placeholder = 'Add a new task to your project'
-    this._title.type = 'text'
-    this._title.spellcheck = false
-    this._title.setAttribute('autofocus', 'true')
-    addStyles(this._title, ['titleAndSelectContainer__title'])
-
-    this._selectState = new Select('todo-state')
-    addStyles(this._selectState.select, [
+    this.Select = new Select('todo-state')
+    addStyles(this.Select.select, [
       'titleAndSelectContainer__selectState',
     ])
+    this.Select.cleanOptions()
+    this.Select.setOptions(this.Select.states.sort())
 
-    this._description = document.createElement('textarea')
-    this._description.placeholder = 'Do you want to add a description :v7'
-    this._description.spellcheck = false
-    this._description.addEventListener('input', () =>
-      this.changeHeight(this._description)
-    )
-    addStyles(this._description, ['add-form__description'])
-
-    this._selectState.cleanOptions()
-    this._selectState.setOptions(this._selectState.states.sort())
+    this.titleAndSelectContainer.appendChild(this.Select.select)
 
     const settings: IbtnSettings = {
       text: 'Add',
       action: () => console.log('hola? para que se usa xD'),
       styles: ['btn-add-task'],
     }
-    this._actionForm = new Button(settings)
-
-    this._titleAndSelectContainer.appendChild(this._title)
-    this._titleAndSelectContainer.appendChild(this._selectState.select)
-
-    this.form.appendChild(this._titleAndSelectContainer)
-    this.form.appendChild(this._description)
-    this.form.appendChild(this._actionForm.button)
+   this.Button = new Button(settings)
+   this.form.appendChild(this.Button.button)
   }
 
-  // eslint-disable-next-line no-unused-vars
-  public addForm = (addFunc: (taks: ITodo) => void) => {
-    this._title.value = ''
-    this._description.value = ''
-    this._actionForm.renameButton('add')
+  public addNewTask = (addFunc: (taks: ITodo) => void) => {
+    this.cleanForm()
+    this.Button.renameButton('create')
 
-    this._actionForm.button.onclick = (e) => {
+    this.Button.button.onclick = (e) => {
       e.preventDefault()
-      // TODO: add a notification here!
-      // this happend when the input title and the description are empty
-      if (this._title.value === '') {
-        return
-      }
+
+      if (this.title.value.trim() === '') return;
+
       const task = {
-        id: 0, // FIX: find any way to do this :c
-        title: this._title.value,
-        description: this._description.value,
-        state: this._selectState.getValue(),
+        id: 0,
+        title: this.title.value,
+        description: this.description.value,
+        state: this.Select.getValue(),
       }
 
       addFunc(task)
     }
   }
 
-  // eslint-disable-next-line no-unused-vars
-  public updateForm = (todo: ITodo, updateFunc: (task: ITodo) => void) => {
-    this._title.value = todo.title
-    this._description.value = todo.description
-    this._selectState.setCurrentValue(todo.state)
-    this._actionForm.renameButton('update')
+  public updateTask = (todo: ITodo, update: (task: ITodo) => void) => {
+    this.title.value = todo.title
+    this.description.value = todo.description
+    this.Select.setCurrentValue(todo.state)
+    this.Button.renameButton('update')
 
-    this._actionForm.button.onclick = (e) => {
+    this.Button.button.onclick = (e) => {
       e.preventDefault()
-      // TODO: add a notification here!
-      if (this._title.value === '') {
-        return
-      }
+
+      if (this.title.value.trim() === '') return;
+
       const task = {
         id: todo.id,
-        title: this._title.value,
-        description: this._description.value,
-        state: this._selectState.getValue(),
+        title: this.title.value,
+        description: this.description.value,
+        state: this.Select.getValue(),
       }
-      updateFunc(task)
+
+      update(task)
     }
+  }
+
+  private createForm = (): HTMLFormElement => {
+
+    const form = document.createElement('form')
+    form.setAttribute('id', 'todo-form')
+    addStyles(form, ['add-form'])
+
+    const titleAndSelectContainer = document.createElement('div')
+    addStyles(titleAndSelectContainer, [
+      'add-form__titleAndSelectContainer',
+    ])
+
+    const titleElement = document.createElement('input')
+    titleElement.placeholder = 'Add a new task to your project'
+    titleElement.type = 'text'
+    titleElement.spellcheck = false
+    titleElement.setAttribute('autofocus', 'true')
+    addStyles(titleElement, ['titleAndSelectContainer__title'])
+
+    const description = document.createElement('textarea')
+    description.placeholder = 'Do you want to add a description?'
+    description.spellcheck = false
+    description.addEventListener('input', () =>
+      this.changeHeight(description)
+    )
+    addStyles(description, ['add-form__description'])
+   
+    titleAndSelectContainer.appendChild(titleElement)
+
+    form.appendChild(titleAndSelectContainer)
+    form.appendChild(description)
+
+    return form
   }
 
   private changeHeight = (input: HTMLTextAreaElement): void => {
     input.style.height = 'auto'
     input.style.height = input.scrollHeight + 'px'
+  }
+
+  private cleanForm = () => {
+    this.title.value = ''
+    this.description.value = ''
   }
 }
 

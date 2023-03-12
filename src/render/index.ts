@@ -38,4 +38,5 @@ Container.containerNavBar.appendChild(Navbar.NavBarContent)
 navigate.setTitle('TodoApp')
 
 root.appendChild(Container.container)
-Todo.displayTodos()
+Todo.displayAddForm()
+// Todo.displayTodos()
