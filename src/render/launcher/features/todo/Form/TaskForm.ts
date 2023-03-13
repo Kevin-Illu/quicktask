@@ -44,6 +44,7 @@ class TaskForm {
 
   public addNewTask = (addFunc: (taks: ITodo) => void) => {
     this.cleanForm()
+    this.title.focus()
     this.Button.renameButton('create')
 
     this.Button.button.onclick = (e) => {
@@ -55,8 +56,8 @@ class TaskForm {
 
       const task = {
         id: 0,
-        title: this.title.value,
-        description: this.description.value,
+        title: this.title.value.trim(),
+        description: this.description.value.trim(),
         state: this.Select.getValue(),
       }
 
@@ -66,7 +67,12 @@ class TaskForm {
 
   public updateTask = (todo: ITodo, update: (task: ITodo) => void) => {
     this.title.value = todo.title
+    this.title.focus()
+    //TODO: add this to the settings
     this.description.value = todo.description
+    const currentHeight = `${localStorage.getItem('description:height')}px`
+    this.description.style.height = currentHeight || '4rem'
+
     this.Select.setCurrentValue(todo.state)
     this.Button.renameButton('update')
 
@@ -82,6 +88,8 @@ class TaskForm {
         state: this.Select.getValue(),
       }
 
+      const height = this.description.clientHeight
+      localStorage.setItem('description:height', JSON.stringify(height))
       update(task)
     }
   }
