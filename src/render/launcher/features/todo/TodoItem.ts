@@ -18,7 +18,6 @@ class TodoItem {
     this.updateTodo = update
 
     this.item = this.createItem(todo, this.deleteTodo)
-    this.handleClick()
   }
 
   private createItem = (
@@ -27,6 +26,7 @@ class TodoItem {
     deleteTodo: (id: number) => void
   ): HTMLElement => {
     const item = document.createElement('div')
+    item.tabIndex = 0
     addStyles(item, ['todo-item'])
 
     const container = document.createElement('div')
@@ -53,21 +53,13 @@ class TodoItem {
 
     container.appendChild(state)
     container.appendChild(title)
+    container.onclick = () => this.displayForm(this.todo, this.updateTodo)
     item.appendChild(container)
 
     containerButtons.appendChild(btnDelete.button)
     item.appendChild(containerButtons)
 
     return item
-  }
-
-  private handleClick = () => {
-    const todoElement = this.item.querySelector(
-      '.todo-item__container'
-    ) as HTMLElement
-    todoElement.addEventListener('click', () => {
-      this.displayForm(this.todo, this.updateTodo)
-    })
   }
 }
 

@@ -1,10 +1,9 @@
-// import { ITodo } from '../../../interfaces/todo'
 import TaskForm from './Form/TaskForm.js'
 import TodoList from './TodoList.js'
 import TodoService from './TodoService.js'
 
 import { RemoveChild } from '../../../utils/tools.js'
-import { ITodo } from '../../../interfaces/todo.js'
+import { IHandlersActions, ITodo } from '../../../interfaces/todo.js'
 
 class TodoView {
   private parent: HTMLElement
@@ -48,12 +47,12 @@ class TodoView {
     RemoveChild(this.containerApp)
 
     //TODO: normalize this with a interface
-    const handlers = {
+    const handlers: IHandlersActions = {
       displayUpdateForm: this.displayUpdateForm,
-      addNewTask: this.addANewTaskForm,
-      update: this.updateTodo,
-      remove: this.deleteTodo,
-      add: this.todoService.addNewTodo,
+      addNewTaskForm: this.addANewTaskForm,
+      updateAction: this.updateTodo,
+      deleteAction: this.deleteTodo,
+      addAction: this.todoService.addNewTodo,
     }
 
     const todoList = new TodoList(this.todoService.getTodos(), handlers)

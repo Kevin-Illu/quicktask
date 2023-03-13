@@ -514,9 +514,11 @@ p {
   border-radius: 50%;
   padding: 0.4rem 0.4rem;
   cursor: pointer;
+  z-index: 20;
 }
 
 .todo-item {
+  background-color: #fff;
   cursor: pointer;
   display: flex;
   justify-content: space-between;

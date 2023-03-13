@@ -1,6 +1,6 @@
 import Button from '../../../components/Button.js'
 import { IbtnSettings } from '../../../interfaces/components.js'
-import { ITodo } from '../../../interfaces/todo.js'
+import { IHandlersActions, ITodo } from '../../../interfaces/todo.js'
 import { addStyles } from '../../../utils/tools.js'
 import InitialScreen from './InitialScreen.js'
 import TodoItem from './TodoItem.js'
@@ -9,25 +9,31 @@ class TodoList {
   public list: HTMLDivElement
   private addNewTodoBtn: Button
   private displayUpdateForm: any
-  private removeItem: () => void
-  private updateItem: () => void
+  private removeItem: any
+  private updateItem: any
   private addNewTask: any
   private initialScreen: InitialScreen
   private add: any
 
-  constructor(todos: ITodo[], handlers: any) {
+  constructor(todos: ITodo[], handlers: IHandlersActions) {
     this.list = document.createElement('div')
     addStyles(this.list, ['todo-list'])
     // handlers
 
-    const { displayUpdateForm, addNewTask, update, remove, add } = handlers
+    const {
+      displayUpdateForm,
+      addNewTaskForm,
+      updateAction,
+      deleteAction,
+      addAction,
+    } = handlers
 
     this.displayUpdateForm = displayUpdateForm
-    this.removeItem = remove
-    this.updateItem = update
+    this.removeItem = deleteAction
+    this.updateItem = updateAction
     this.addTodoItems(todos)
-    this.addNewTask = addNewTask
-    this.add = add
+    this.addNewTask = addNewTaskForm
+    this.add = addAction
 
     const addTaskSettings: IbtnSettings = {
       iconPath: './public/assets/add.svg',
