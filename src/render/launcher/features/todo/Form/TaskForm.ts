@@ -43,7 +43,6 @@ class TaskForm {
   }
 
   public addNewTask = (addFunc: (taks: ITodo) => void) => {
-    console.log(addFunc)
     this.cleanForm()
     this.Button.renameButton('create')
 
