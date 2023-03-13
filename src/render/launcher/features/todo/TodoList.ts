@@ -8,26 +8,30 @@ import TodoItem from './TodoItem.js'
 class TodoList {
   public list: HTMLDivElement
   private addNewTodoBtn: Button
-  private displayForm: any
+  private displayUpdateForm: any
   private removeItem: () => void
   private updateItem: () => void
+  private addNewTask: any
   private initialScreen: InitialScreen
+  private add: any
 
   constructor(todos: ITodo[], handlers: any) {
     this.list = document.createElement('div')
     addStyles(this.list, ['todo-list'])
     // handlers
-    // const [goToAddForm, goToUpdateForm, remove, edit] = handlers
-    const { displayForm, update, remove, add } = handlers
 
-    this.displayForm = displayForm
+    const { displayUpdateForm, addNewTask, update, remove, add } = handlers
+
+    this.displayUpdateForm = displayUpdateForm
     this.removeItem = remove
     this.updateItem = update
     this.addTodoItems(todos)
+    this.addNewTask = addNewTask
+    this.add = add
 
     const addTaskSettings: IbtnSettings = {
       iconPath: './public/assets/add.svg',
-      action: () => this.displayForm('add', add),
+      action: () => this.addNewTask(this.add),
       styles: ['btn', 'btn-addTask'],
     }
 
@@ -41,11 +45,12 @@ class TodoList {
     if (todos.length == 0) return
 
     todos.forEach((todo) => {
-      const { item } = new TodoItem(todo, {
-        goToForm: this.displayForm, 
-        deleteTodo: this.removeItem,
-        updateTodo: this.updateItem
-      })
+      const props = {
+        displayForm: this.displayUpdateForm,
+        update: this.updateItem,
+        remove: this.removeItem,
+      }
+      const { item } = new TodoItem(todo, props)
       this.list.appendChild(item)
     })
   }

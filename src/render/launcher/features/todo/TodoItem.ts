@@ -8,14 +8,14 @@ class TodoItem {
   public item: HTMLElement
   private deleteTodo: (id: number) => void
   private updateTodo: (todo: ITodo) => void
-  private goToForm: (todo: ITodo, updateTodo: (todo: ITodo) => void) => void
+  private displayForm: (todo: ITodo, updateTodo: (todo: ITodo) => void) => void
   private todo: ITodo
 
-  constructor(todo: ITodo, { goToForm, deleteTodo, updateTodo }: any) {
+  constructor(todo: ITodo, { displayForm, update, remove }: any) {
     this.todo = todo
-    this.goToForm = goToForm
-    this.deleteTodo = deleteTodo
-    this.updateTodo = updateTodo
+    this.displayForm = displayForm
+    this.deleteTodo = remove
+    this.updateTodo = update
 
     this.item = this.createItem(todo, this.deleteTodo)
     this.handleClick()
@@ -66,7 +66,7 @@ class TodoItem {
       '.todo-item__container'
     ) as HTMLElement
     todoElement.addEventListener('click', () => {
-      this.goToForm(this.todo, this.updateTodo)
+      this.displayForm(this.todo, this.updateTodo)
     })
   }
 }

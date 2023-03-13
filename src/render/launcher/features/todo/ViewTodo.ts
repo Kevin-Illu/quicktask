@@ -4,57 +4,60 @@ import TodoList from './TodoList.js'
 import TodoService from './TodoService.js'
 
 import { RemoveChild } from '../../../utils/tools.js'
+import { ITodo } from '../../../interfaces/todo.js'
 
 class TodoView {
   private parent: HTMLElement
   private form: TaskForm
   private todoService: TodoService
+  private containerApp: HTMLElement
 
-  constructor(
-    parent: HTMLElement,
-    todoService: TodoService
-  ) {
+  constructor(parent: HTMLElement, todoService: TodoService) {
     this.parent = parent
+    this.containerApp = this.parent.querySelector('.app') as HTMLElement
     this.form = new TaskForm()
     this.todoService = todoService
   }
 
-  public viewUpdateTaskForm = (args: any) => {
-    const { todo, update } = args;
-    this.form.updateTask(todo, update)
+  public displayUpdateForm = (todo: ITodo) => {
+    RemoveChild(this.containerApp)
+    this.form.updateTask(todo, this.updateTodo)
+    this.containerApp.appendChild(this.form.form)
   }
 
-  public viewAddNewTaskForm = (args: any) => {
-    const { addNewTask } = args
-    this.form.addNewTask(addNewTask)
+  public addANewTaskForm = (addAction: any) => {
+    RemoveChild(this.containerApp)
+    this.form.addNewTask((todo) => {
+      addAction(todo)
+      this.displayTodoList()
+    })
+    this.containerApp.appendChild(this.form.form)
   }
 
-  public displayForm = (action: 'add' | 'update', args: any = null) => {
-    if (!args) {
-      console.error('pleas provide args')
-    }
+  public deleteTodo = (id: number) => {
+    this.todoService.deleteTodo(id)
+    this.displayTodoList()
+  }
 
-    if (action === 'add') {
-      this.viewAddNewTaskForm(args)
-    }
-
-    if (action === 'update') {
-      this.viewUpdateTaskForm(args)
-    }
+  public updateTodo = (todo: ITodo) => {
+    this.todoService.updateTodo(todo)
+    this.displayTodoList()
   }
 
   public displayTodoList = () => {
-    RemoveChild(this.parent)
+    RemoveChild(this.containerApp)
 
+    //TODO: normalize this with a interface
     const handlers = {
-      displayForm: this.displayForm,
-      update: this.todoService.updateTodo,
-      delete: this.todoService.deleteTodo,
-      add: this.todoService.addNewTodo
+      displayUpdateForm: this.displayUpdateForm,
+      addNewTask: this.addANewTaskForm,
+      update: this.updateTodo,
+      remove: this.deleteTodo,
+      add: this.todoService.addNewTodo,
     }
 
     const todoList = new TodoList(this.todoService.getTodos(), handlers)
-    this.parent.appendChild(todoList.list)
+    this.containerApp.appendChild(todoList.list)
   }
 }
 

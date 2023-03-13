@@ -5,7 +5,11 @@ import LauncherView from './LauncherView.js'
 import ContainerApp from './layout/container.js'
 
 import MainNavigationBar from './layout/appbar/appbar.js'
-import { btnClose, btnMaximize, btnMinimize } from './layout/appbar/appbarButtons.js'
+import {
+  btnClose,
+  btnMaximize,
+  btnMinimize,
+} from './layout/appbar/appbarButtons.js'
 import { IbtnSettings } from '../interfaces/components.js'
 import Button from '../components/Button.js'
 import NavBar from './layout/navbar.js'
@@ -27,19 +31,19 @@ export default class Launcher {
     this.container = new ContainerApp()
     this.navbar = new NavBar() // navbar apps
 
-
     this.navigate = new MainNavigationBar(
       ['navigation'],
-      [btnMinimize,
-        btnMaximize,
-        btnClose]
+      [btnMinimize, btnMaximize, btnClose]
     )
 
     this.todoApp = new TodoApp()
     this.todoService = new TodoService(this.todoApp)
     this.todoView = new TodoView(this.container.container, this.todoService)
 
-    this.view = new LauncherView({container: this.container, navigate: this.navigate})
+    this.view = new LauncherView({
+      container: this.container,
+      navigate: this.navigate,
+    })
 
     const btnTodoSettings: IbtnSettings = {
       iconPath: './public/assets/checklist.svg',
@@ -56,7 +60,7 @@ export default class Launcher {
   }
 
   public run = () => {
+    this.todoView.displayTodoList()
     this.view.render(this.parent)
-    this.todoView.displayTodoList();
   }
 }
