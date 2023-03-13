@@ -61,12 +61,10 @@ class TaskForm {
       }
 
       addFunc(task)
-      console.log(task)
     }
   }
 
   public updateTask = (todo: ITodo, update: (task: ITodo) => void) => {
-    console.log(update)
     this.title.value = todo.title
     this.description.value = todo.description
     this.Select.setCurrentValue(todo.state)
