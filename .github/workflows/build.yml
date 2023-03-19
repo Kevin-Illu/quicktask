@@ -1,33 +1,25 @@
-name: Build
-
+name: Release
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  release:
+    types:
+      - created
 
 jobs:
-  build:
+  release:
     runs-on: ${{ matrix.os }}
+
     strategy:
       matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
-    steps:
-      - name: Configure Git
-        run: |
-          if [[ "$OSTYPE" == "darwin"* ]]; then
-            git config --global --add safe.directory $HOME/QuickTask
-          else
-            git config --global --add safe.directory "$HOME\QuickTask"
-          fi
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-      - name: Install dependencies
-        run: npm install
-      - name: Build
-        run: npm run make
+        os: [macos-latest, ubuntu-latest, windows-latest]
 
+    steps:
+    - uses: actions/checkout@v2       
+    - uses: actions/setup-node@master
+      with:
+        node-version: 14
+    - name: install dependencies
+      run: npm install
+    - name: publish
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: npm run publish
