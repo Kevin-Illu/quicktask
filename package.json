@@ -13,7 +13,7 @@
     "format": "prettier --write \"**/*.{js,ts}\"",
     "start": "electron-forge start",
     "package": "electron-forge package",
-    "make": "electron-forge make",
+    "make": "electron-forge make --platform=linux --arch=x64 --dir=./build/main --out=./dist --ignore=\"(.gitignore|.git|node_modules|.DS_Store)\"",
     "publish": "electron-forge publish"
   },
   "keywords": [],
