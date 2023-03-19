@@ -3,10 +3,10 @@
   "version": "1.1.0",
   "description": "QuickApp es una aplicacion para ayudarte a ser productivo.",
   "authors": "Kevin Illu",
-  "main": "build/main/main.js",
+  "main": "dist/main/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "electron ./build/main/main.js",
+    "dev": "electron ./dist/main/main.js",
     "css": "sass --watch ./src/render/scss/index.scss ./public/styles/index.css",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -14,7 +14,10 @@
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make --platform=linux --arch=x64 --dir=./build/main --out=./dist --ignore=\"(.gitignore|.git|node_modules|.DS_Store)\"",
-    "publish": "electron-forge publish"
+    "publish": "electron-forge publish",
+    "postinstall": "electron-builder install-app-deps",
+		"build": "electron-builder --mac --windows --linux",
+		"release": "electron-builder --mac --windows --linux --publish always"
   },
   "keywords": [],
   "author": "",
@@ -29,6 +32,7 @@
     "@typescript-eslint/eslint-plugin": "^5.51.0",
     "@typescript-eslint/parser": "^5.51.0",
     "electron": "^23.0.0",
+    "electron-builder": "^23.6.0",
     "electron-prebuilt-compile": "^8.2.0",
     "eslint": "^8.34.0",
     "eslint-config-prettier": "^8.6.0",
