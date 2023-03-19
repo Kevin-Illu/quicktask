@@ -5,42 +5,42 @@ jobs:
   build_on_linux:
     runs-on: ubuntu-latest
     steps:
-    - name: Workaround permission issue
-      run: /usr/bin/git config --global --add safe.directory /home/runner/work/QuickTask
     - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
+    - name: Copy files to correct directory
+      run: cp -r ./QuickTask/* ./
+    - uses: actions/setup-node@v1
       with:
-        node-version: 14
-    - name: install dependencies
+        node-version: '14.x'
+    - name: Install Dependencies
       run: npm install
-    - name: build
+    - name: Build
       run: npm run make
 
   build_on_mac:
     runs-on: macos-latest
     steps:
-    - name: Workaround permission issue
-      run: /usr/local/bin/git config --global --add safe.directory /Users/runner/work/QuickTask
     - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
+    - name: Copy files to correct directory
+      run: cp -r ./QuickTask/* ./
+    - uses: actions/setup-node@v1
       with:
-        node-version: 14
-    - name: install dependencies
+        node-version: '14.x'
+    - name: Install Dependencies
       run: npm install
-    - name: build
+    - name: Build
       run: npm run make
 
   build_on_win:
     runs-on: windows-latest
     steps:
-    - name: Workaround permission issue
-      run: "C:\\Program Files\\Git\\bin\\git.exe config --global --add safe.directory D:\\a\\QuickTask"
     - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
+    - name: Copy files to correct directory
+      run: cp -r ./QuickTask/* ./
+    - uses: actions/setup-node@v1
       with:
-        node-version: 14
-    - name: install dependencies
+        node-version: '14.x'
+    - name: Install Dependencies
       run: npm install
-    - name: build
+    - name: Build
       run: npm run make
 
