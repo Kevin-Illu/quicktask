@@ -6,41 +6,38 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+      path: ./
     - uses: actions/setup-node@v1
       with:
         node-version: 14
     - name: install dependencies
       run: npm install
-      working-directory: ./QuickTask
     - name: build
       run: npm run make
-      working-directory: ./QuickTask
 
   build_on_mac:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
+      path: ./
     - uses: actions/setup-node@v1
       with:
         node-version: 14
     - name: install dependencies
       run: npm install
-      working-directory: ./QuickTask
     - name: build
       run: npm run make
-      working-directory: ./QuickTask
 
   build_on_win:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
+      path: .\
     - uses: actions/setup-node@v1
       with:
         node-version: 14
     - name: install dependencies
       run: npm install
-      working-directory: .\QuickTask
     - name: build
       run: npm run make
-      working-directory: .\QuickTask
 
