@@ -14,18 +14,13 @@ jobs:
     strategy:
       matrix:
         os: [macos-latest, windows-latest, ubuntu-latest]
-      shell: [bash, pwsh, bash]
     steps:
       - name: Configure Git
         run: |
-          if [ "$(uname)" == "Darwin" ]; then
+          if [[ "$OSTYPE" == "darwin"* ]]; then
             git config --global --add safe.directory $HOME/QuickTask
-          elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-            git config --global --add safe.directory $HOME/QuickTask
-          elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
-            git config --global --add safe.directory /c/Users/runner/work/QuickTask/QuickTask
-          elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
-            git config --global --add safe.directory /c/Users/runner/work/QuickTask/QuickTask
+          else
+            git config --global --add safe.directory "$HOME\QuickTask"
           fi
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
