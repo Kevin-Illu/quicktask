@@ -1,35 +1,34 @@
-name: Build and Test
+name: Build
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  build_and_test:
+  build:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        node-version: [14.x]
+        os: [macos-latest, windows-latest, ubuntu-latest]
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Configure Git
-      run: |
-        git config --global user.name "Tu Nombre"
-        git config --global user.email "tu-correo@ejemplo.com"
-        git config --global --add safe.directory $HOME/QuickTask
-
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Build
-      run: npm run make
-
-    - name: Test
-      run: npm test
+      - name: Remove folder and clone repository
+        run: |
+          rm -rf QuickTask
+          git clone https://github.com/Kevin-Illu/QuickTask.git QuickTask
+        working-directory: $HOME
+      - name: Configure Git
+        run: |
+          git config --global --add safe.directory $HOME/QuickTask
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run make
 
