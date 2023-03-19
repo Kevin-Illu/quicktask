@@ -1,17 +1,19 @@
-name: Package Electron App
+name: Build and Release
 
 on:
   push:
     branches:
       - main
+
 jobs:
   build:
-    name: Build and package
     runs-on: ${{ matrix.os }}
+
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
         node-version: [14.x]
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -21,26 +23,27 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Install dependencies
-        run: |
-          npm install
-          npm install -g electron-forge
+      - name: Install Dependencies
+        run: npm install
 
-      - name: Package app
-        run: |
-          electron-forge make
-        if: runner.os != 'Windows'
+      - name: Build
+        run: npm run make
 
-      - name: Package app for Windows
-        run: |
-          electron-forge make --platform=win32 --arch=x64
-        if: runner.os == 'Windows'
-        
-      - name: Upload release asset
-        uses: actions/upload-release-asset@v1
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
         with:
-          asset_path: './out/make/*'
-          name: QuickTask v${{ env.PACKAGE_VERSION }} for ${{ matrix.os }}
-          mime_type: application/zip
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          name: Release Artifacts
+          path: |
+            out/QuickTask-*
+
+      - name: Release to GitHub
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            out/QuickTask-*
+          token: ${{ secrets.GITHUB_TOKEN }}
+          body: |
+            Release of version ${{ env.npm_package_version }}
+          draft: false
+          prerelease: false
 
