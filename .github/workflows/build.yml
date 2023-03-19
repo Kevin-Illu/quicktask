@@ -1,40 +1,49 @@
 name: Build
 on: [push, pull_request]
 
+env:
+  PROJECT_PATH: QuickTask
+
 jobs:
   build_on_linux:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 14
-    - name: install dependencies
-      run: npm install
-    - name: build
-      run: npm run make
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - name: install dependencies
+        run: npm install
+      - name: build
+        run: npm run make
+      - name: set env variable
+        run: echo "PROJECT_PATH=${{ env.PROJECT_PATH }}" >> $GITHUB_ENV
 
   build_on_mac:
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 14
-    - name: install dependencies
-      run: npm install
-    - name: build
-      run: npm run make
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - name: install dependencies
+        run: npm install
+      - name: build
+        run: npm run make
+      - name: set env variable
+        run: echo "PROJECT_PATH=${{ env.PROJECT_PATH }}" >> $GITHUB_ENV
 
   build_on_win:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 14
-    - name: install dependencies
-      run: npm install
-    - name: build
-      run: npm run make
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - name: install dependencies
+        run: npm install
+      - name: build
+        run: npm run make
+      - name: set env variable
+        run: echo "PROJECT_PATH=${{ env.PROJECT_PATH }}" >> $GITHUB_ENV
 
