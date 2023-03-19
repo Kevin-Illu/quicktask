@@ -1,9 +1,13 @@
 {
   "name": "electron-todo-app",
-  "version": "1.0.1",
+  "version": "1.0.2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kevin-Illu/QuickApp.git"
+  },
   "description": "QuickApp es una aplicacion para ayudarte a ser productivo.",
   "authors": "Kevin Illu",
-  "main": "build/main/main.js",
+  "main": "dist/main/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "electron ./build/main/main.js",
@@ -14,7 +18,10 @@
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "publish": "electron-forge publish"
+    "publish": "electron-forge publish",
+    "postinstall": "electron-builder install-app-deps",
+    "build": "electron-builder --mac --windows --linux",
+    "release": "electron-builder --mac --windows --linux --publish always"
   },
   "keywords": [],
   "author": "",
@@ -29,6 +36,7 @@
     "@typescript-eslint/eslint-plugin": "^5.51.0",
     "@typescript-eslint/parser": "^5.51.0",
     "electron": "^23.0.0",
+    "electron-builder": "^24.0.0",
     "eslint": "^8.34.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-config-standard-with-typescript": "^34.0.0",

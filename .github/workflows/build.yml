@@ -1,45 +1,26 @@
-name: Build
-on: [push, pull_request]
+name: Build/release
+
+on: push
 
 jobs:
-  build_on_linux:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        path: 'QuickTask'
-    - uses: actions/setup-node@master
-      with:
-        node-version: 14
-    - name: install dependencies
-      run: npm install
-    - name: build
-      run: npm run make
+  release:
+    runs-on: ${{ matrix.os }}
 
-  build_on_mac:
-    runs-on: macos-latest
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        path: 'QuickTask'
-    - uses: actions/setup-node@master
-      with:
-        node-version: 14
-    - name: install dependencies
-      run: npm install
-    - name: build
-      run: npm run make
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
 
-  build_on_win:
-    runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v2
-      with:
-        path: 'QuickTask'
-    - uses: actions/setup-node@master
-      with:
-        node-version: 14
-    - name: install dependencies
-      run: npm install
-    - name: build
-      run: npm run make
+      - name: Check out Git repository
+        uses: action/checkout@v1
+
+      - name: Install Node.js npm and yarn
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10
+
+      - name: Build/release Electron app
+        uses: samuelmeuli/action-electron-builder@v1
+        with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        release: ${{ startWith(github.ref, 'refs/tags/v') }}
