@@ -1,11 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
-
-try {
-  require('electron-reloader')(module)
-} catch {
-  /* empty */
-}
+require('update-electron-app')()
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -28,8 +23,8 @@ function createWindow() {
     actions[action]()
   })
 
-  win.loadFile('../../index.html')
-  win.webContents.openDevTools({ mode: 'detach' })
+  win.loadFile('index.html')
+  // win.webContents.openDevTools({ mode: 'detach' })
 }
 
 app.whenReady().then(() => {
