@@ -1,5 +1,7 @@
 module.exports = {
-  packagerConfig: {},
+  packagerConfig: {
+    packagerConfig: 'main'
+  },
   rebuildConfig: {},
   publishers: [
     {
