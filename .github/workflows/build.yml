@@ -1,46 +1,35 @@
-name: Build
+name: Build and Test
+
 on: [push, pull_request]
 
 jobs:
-  build_on_linux:
-    runs-on: ubuntu-latest
+  build_and_test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node-version: [14.x]
     steps:
-    - uses: actions/checkout@v2
-    - name: Copy files to correct directory
-      run: cp -r ./QuickTask/* ./
-    - uses: actions/setup-node@v1
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Configure Git
+      run: |
+        git config --global user.name "Tu Nombre"
+        git config --global user.email "tu-correo@ejemplo.com"
+        git config --global --add safe.directory $HOME/QuickTask
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
       with:
-        node-version: '14.x'
-    - name: Install Dependencies
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install dependencies
       run: npm install
+
     - name: Build
       run: npm run make
 
-  build_on_mac:
-    runs-on: macos-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Copy files to correct directory
-      run: cp -r ./QuickTask/* ./
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '14.x'
-    - name: Install Dependencies
-      run: npm install
-    - name: Build
-      run: npm run make
-
-  build_on_win:
-    runs-on: windows-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Copy files to correct directory
-      run: cp -r ./QuickTask/* ./
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '14.x'
-    - name: Install Dependencies
-      run: npm install
-    - name: Build
-      run: npm run make
+    - name: Test
+      run: npm test
 
