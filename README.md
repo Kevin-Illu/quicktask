@@ -10,8 +10,8 @@ Before you get started, make sure you have the following installed on your machi
 
 - Git
 - npm
-- typescript global
-- sass global
+- typescript
+- sass
 
 ## Project Description
 
