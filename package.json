@@ -21,8 +21,7 @@
     "publish": "electron-forge publish",
     "postinstall": "electron-builder install-app-deps",
     "build": "electron-builder --mac --windows --linux",
-    "release": "electron-builder --mac --windows --linux --publish always",
-    "preinstall": "exit 0"
+    "release": "electron-builder --mac --windows --linux --publish always"
   },
   "keywords": [],
   "author": "",
