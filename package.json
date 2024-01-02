@@ -17,11 +17,11 @@
     "format": "prettier --write \"**/*.{js,ts}\"",
     "start": "electron-forge start",
     "package": "electron-forge package",
-    "make": "electron-forge make --platform=linux --arch=x64 --ignore=\"(.gitignore|.git|node_modules|.DS_Store)\" --appPath=./dist/main",
+    "make": "electron-forge make --platform=linux --arch=x64 --ignore=\"(.gitignore|.git|node_modules|.DS_Store)\" --appPath=./dist",
     "publish": "electron-forge publish",
     "postinstall": "electron-builder install-app-deps",
-    "build": "electron-builder --mac --windows --linux",
-    "release": "electron-builder --mac --windows --linux --publish always"
+    "build": "electron-builder --windows --linux",
+    "release": "electron-builder --windows --linux --publish always"
   },
   "keywords": [],
   "author": "",
